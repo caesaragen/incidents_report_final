@@ -31,5 +31,14 @@ class Ob extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the incident type that owns the ob.
+     */
+    public function incidentType()
+    {
+        return $this->belongsTo(IncidentType::class, 'incident_type');
+    }
+    
     
 }
