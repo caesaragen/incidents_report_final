@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Incident;
 
 use App\Http\Controllers\Controller;
+use App\Models\CompensationAnimal;
 use App\Models\IncidentType;
 use App\Models\Incident;
 use App\Models\Ob;
@@ -45,5 +46,22 @@ class IncidentsController extends Controller
         }
         return view('dashboard', compact('incident_types'));
     }
+
+    public function index ()
+    {
+        $incident_types = IncidentType::all();
+        return view('incidents.index', compact('incident_types'));
+    }
+
+    public function create(Request $request)
+    {
+        $incident_types = IncidentType::all();
+        $compensation_animals = CompensationAnimal::all();
+        $obNumber = $request->input('ob'); // Retrieve the 'ob' query parameter
+        $ob = Ob::where('ob_number', $obNumber)->first(); // Assuming 'ob_number' is the field in your OB model
+    
+        return view('incidents.create', compact('incident_types', 'obNumber', 'ob', 'compensation_animals'));
+    }
+    
     
 }
