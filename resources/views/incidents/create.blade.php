@@ -34,7 +34,8 @@
                                 </div>
                             </div>
                             <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                                <form>
+                                <form method="post" action="{{ route('incidents.store') }}" class="p-6">
+                                    @csrf
 
                                     <hr class="mt-6 border-b-1 border-blueGray-300">
 
@@ -72,7 +73,7 @@
                                             </label>
                                             <input type="date"
                                                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                                value="">
+                                               name="date_of_incident" >
                                             </div>
                                         </div>
                                         <div class="w-full lg:w-4/12 px-4">
@@ -81,7 +82,7 @@
                                                     htmlfor="grid-password">
                                                    Animal Responsible
                                                 </label>
-                                                <select class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="incident_type" name="incident_type">
+                                                <select class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="incident_type" name="compensation_animal_id">
                                                     <option value="">{{__('Select Animal')}}</option>
                                                     @foreach ($compensation_animals as $compensation_animals)
                                                         <option value="{{ $compensation_animals->id }}">{{ $compensation_animals->name }}</option>
@@ -90,12 +91,15 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <button type="submit" id="ad" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                        Add New Incident
+                                    </button>
                                     <div id="incident-forms"></div>
 
                                     <hr class="mt-6 border-b-1 border-blueGray-300">
-                                    <button type="button" id="add-incident" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                    {{-- <button type="button" id="add-incident" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                         Add New Incident
-                                    </button>
+                                    </button> --}}
                                 </form>
                             </div>
                         </div>

@@ -37,6 +37,7 @@ Route::middleware('auth')->group(
         Route::get('/dashboard', [IncidentsController::class, 'dashboard'])->name('dashboard');
         Route::post('/obs', [ObController::class, 'store'])->name('obs.store');
         Route::get('/incidents', [IncidentsController::class, 'create'])->name('incidents.create');
+        Route::post('/incidents', [IncidentsController::class, 'store'])->name('incidents.store');
     }
 );
 

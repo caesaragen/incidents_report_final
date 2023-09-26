@@ -35,6 +35,11 @@ class Ob extends Model
     /**
      * Get the incident type that owns the ob.
      */
+
+    public function incident()
+    {
+           return $this->hasMany(Incident::class);
+    }
     public function incidentType()
     {
         return $this->belongsTo(IncidentType::class, 'incident_type');

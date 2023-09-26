@@ -47,7 +47,7 @@ class IncidentsController extends Controller
         return view('dashboard', compact('incident_types'));
     }
 
-    public function index ()
+    public function index()
     {
         $incident_types = IncidentType::all();
         return view('incidents.index', compact('incident_types'));
@@ -61,6 +61,25 @@ class IncidentsController extends Controller
         $ob = Ob::where('ob_number', $obNumber)->first(); // Assuming 'ob_number' is the field in your OB model
     
         return view('incidents.create', compact('incident_types', 'obNumber', 'ob', 'compensation_animals'));
+    }
+
+    public function store(Request $request)
+    {
+       
+        $obNumber = $request->input('ob_number');
+        $ob = Ob::where('ob_number', $obNumber)->first();
+        dd($ob);
+        $incident = Incident::create(
+            [
+                'name_of_affected' => $ob->name_of_affected,
+                'compensation_animal_id' => $request->input('compensation_animal_id'),
+                'date_of_incident' => $request->input('date_of_incident'),
+                'compensationable' => 'yes', // Assuming this is the default value
+                'ob_id' => $ob->id,
+            ]
+        );
+        $incident->save();
+        return redirect()->route('incidents.index')->with('success', 'Incident recorded successfully.');
     }
     
     

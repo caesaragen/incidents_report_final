@@ -15,10 +15,21 @@ class Incident extends Model
      * @var array<int, string>
      */
 
+        protected $fillable = [
+            'name_of_affected',
+            'ob_id',
+            'compensation_animal_id',
+            'date_of_incident',
+            'compensationable'
+        ];
 
+        public function ob()
+        {
+            return $this->belongsTo(Ob::class);
+        }
 
-     public function incidentType()
-     {
-         return $this->belongsTo(IncidentType::class, 'incident_type');
-     }
+        // public function incidentType()
+        // {
+        //     return $this->belongsTo(IncidentType::class, 'incident_type');
+        // }
 }
