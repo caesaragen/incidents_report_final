@@ -38,6 +38,8 @@ Route::middleware('auth')->group(
         Route::post('/obs', [ObController::class, 'store'])->name('obs.store');
         Route::get('/incidents', [IncidentsController::class, 'create'])->name('incidents.create');
         Route::post('/incidents', [IncidentsController::class, 'store'])->name('incidents.store');
+        // Route::get('/incidents/{incident}', [IncidentsController::class, 'show'])->name('incidents.show');
+        Route::get('/incidents/all', [IncidentsController::class, 'show'])->name('incidents.index');
     }
 );
 

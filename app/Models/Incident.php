@@ -23,9 +23,22 @@ class Incident extends Model
             'compensationable'
         ];
 
+        /**
+         * Summary of ob
+         * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+         */
         public function ob()
         {
             return $this->belongsTo(Ob::class);
+        }
+
+        /**
+         * Summary of compensationAnimal
+         * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+         */
+        public function compensationAnimal()
+        {
+            return $this->belongsTo(CompensationAnimal::class);
         }
 
         // public function incidentType()
