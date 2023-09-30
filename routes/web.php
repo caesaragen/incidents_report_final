@@ -40,6 +40,7 @@ Route::middleware('auth')->group(
         Route::post('/incidents', [IncidentsController::class, 'store'])->name('incidents.store');
         // Route::get('/incidents/{incident}', [IncidentsController::class, 'show'])->name('incidents.show');
         Route::get('/incidents/all', [IncidentsController::class, 'show'])->name('incidents.index');
+        Route::get('/incidents/report', [IncidentsController::class, 'incidentAssessment'])->name('incidents.report');
     }
 );
 

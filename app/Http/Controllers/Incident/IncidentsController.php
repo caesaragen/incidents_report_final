@@ -17,7 +17,8 @@ class IncidentsController extends Controller
 {
     /**
      * Summary of dashboard
-     * @param \Illuminate\Http\Request $request
+     *
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
      */
     public function dashboard(Request $request) 
@@ -53,6 +54,7 @@ class IncidentsController extends Controller
 
     /**
      * Summary of index
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
      */
     public function show(Request $request) 
@@ -149,6 +151,22 @@ class IncidentsController extends Controller
         );
         $incident->save();
         return redirect()->back()->with('success', 'Incident recorded successfully.');
+    }
+
+    /**
+     * Summary of incidentAssessment
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function incidentAssessment(Request $request) : \Illuminate\Contracts\View\View
+    {
+        $incident_types = IncidentType::all();
+        $compensation_animals = CompensationAnimal::all();
+        $incident_id = $request->query('incident_id'); // Retrieve the 'ob' query parameter
+        $incident = Incident::where('id', $incident_id)->first(); // Assuming 'ob_number' is the field in your OB model
+        // dd($incident);
+        return view('incidents.incident-report', compact('incident_types', 'incident_id', 'incident', 'compensation_animals'));
     }
     
     

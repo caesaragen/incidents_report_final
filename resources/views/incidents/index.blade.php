@@ -84,7 +84,7 @@
                     searchable: false,
                     render: function(data, type, row) {
                         // Add a click event to the button to redirect to incidents.create with the 'ob_number' as a query parameter
-                        return '<a href="{{ route('incidents.create') }}?incident_id=' + row.id + '" class="edit btn btn-primary btn-sm">Assess Incident</a>';
+                        return '<a href="{{ route('incidents.report') }}?incident_id=' + row.id + '" class="edit btn btn-primary btn-sm">Assess Incident</a>';
                     }
                 },
             ]
