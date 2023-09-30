@@ -4,7 +4,7 @@
 
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-white dark:text-gray-200 leading-tight">
             {{ __('Incident Report') }}
         </h2>
     </x-slot>
@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+                            <div class="flex-auto px-4 lg:px-10 py-10 pt-0 bg-white">
                                 <form method="post" action="{{ route('incidents.store') }}" class="p-6"id="incident-form">
                                     @csrf
                                     <input type="hidden" name="ob_number" value="{{ $obNumber }}">
@@ -142,6 +142,7 @@ Add Incident
     function goBack() {
         window.history.back(); // This will navigate back to the previous page in the browser's history
     }
+
     function goToCreateIncident() {
         window.location.href = "{{ route('incidents.index') }}";
     }
