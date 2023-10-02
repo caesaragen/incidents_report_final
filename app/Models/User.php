@@ -51,4 +51,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+    public function hasVerifiedEmail() 
+    {
+        return is_null($this->email_verified_at);
+    }
+
+    public function canAccessFilament(): bool
+    {
+        return $this->role_id === 1 && $this->hasVerifiedEmail();
+    }
+
 }
