@@ -9,9 +9,9 @@
 
     <div class="py-12">
         <div class=" mx-auto sm:px-6 lg:px-8">
-            <x-action-button class="p-2" x-data=""
+            <x-action-button class="p-2 m-2" x-data=""
                 x-on:click.prevent="$dispatch('open-modal', 'ob-form-modal')" data-modal-toggle="ob-form-modal">
-                {{ __('Create OB') }}</x-action-button>
+                {{ __('Create New OB') }}</x-action-button>
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @if (session('success'))

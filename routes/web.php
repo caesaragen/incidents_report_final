@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Incident\IncidentAssessmentController;
 use App\Http\Controllers\Incident\IncidentsController;
 use App\Http\Controllers\Incident\ObController;
 use App\Http\Controllers\ProfileController;
@@ -41,6 +42,9 @@ Route::middleware('auth')->group(
         // Route::get('/incidents/{incident}', [IncidentsController::class, 'show'])->name('incidents.show');
         Route::get('/incidents/all', [IncidentsController::class, 'show'])->name('incidents.index');
         Route::get('/incidents/report', [IncidentsController::class, 'incidentAssessment'])->name('incidents.report');
+        Route::post('/incidents/assessment', [IncidentAssessmentController::class, 'create'])->name('incidents.assessment.store');
+        Route::get('/assessment/all', [IncidentAssessmentController::class, 'index'])->name('compensations.index');
+        Route::get('/compensation/create', [IncidentAssessmentController::class, 'claim'])->name('compensations.create');
     }
 );
 

@@ -5,7 +5,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-white dark:text-gray-200 leading-tight">
-            {{ __('Incident Report') }}
+            {{ __('Incident Report for') }} {{ $ob->name_of_affected ?? '' }}
         </h2>
     </x-slot>
 

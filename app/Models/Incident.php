@@ -41,8 +41,8 @@ class Incident extends Model
             return $this->belongsTo(CompensationAnimal::class);
         }
 
-        // public function incidentType()
-        // {
-        //     return $this->belongsTo(IncidentType::class, 'incident_type');
-        // }
+        public function incidentType()
+        {
+            return $this->belongsTo(IncidentType::class, 'incident_type');
+        }
 }

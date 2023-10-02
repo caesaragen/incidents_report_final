@@ -96,7 +96,7 @@
       
           <div class="flex flex-col items-center justify-center">
             <h1 class="mt-12 text-5xl font-extrabold text-gray-900 dark:text-white">
-              Human Wildlife Conflict Incidence Report
+              Human - Wildlife Conflict Incidence Report
             </h1>
           </div>
       
