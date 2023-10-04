@@ -45,6 +45,9 @@ Route::middleware('auth')->group(
         Route::post('/incidents/assessment', [IncidentAssessmentController::class, 'create'])->name('incidents.assessment.store');
         Route::get('/assessment/all', [IncidentAssessmentController::class, 'index'])->name('compensations.index');
         Route::get('/compensation/create', [IncidentAssessmentController::class, 'claim'])->name('compensations.create');
+        Route::post('/claimants/store', [IncidentAssessmentController::class, 'saveClaimant'])->name('claimants.store');
+        Route::post('/kin/store', [IncidentAssessmentController::class, 'createKin'])->name('kin.store');
+        Route::post('/comments/store', [IncidentAssessmentController::class, 'saveChiefComments'])->name('comments.store');
     }
 );
 

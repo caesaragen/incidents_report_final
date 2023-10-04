@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Incident;
 
 use App\Http\Controllers\Controller;
+use App\Models\ChiefComment;
+use App\Models\Claimant;
 use App\Models\Incident;
 use App\Models\IncidentAssessment;
+use App\Models\NextOfKin;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -94,7 +97,128 @@ class IncidentAssessmentController extends Controller
     
     public function claim()
     {
-        return view('compensations.create');
+        $assessment_id = request('assessment_id');
+        $incident = IncidentAssessment::where('id', $assessment_id)->first();
+        $incident_type = $incident->incident->ob->incidentType->name;
+        // dd($incident_type);
+        // dd($incident);
+        return view('compensations.create', compact('assessment_id', 'incident_type'));
+    }
+
+    public function saveClaimant(Request $request) 
+    {
+        // Step 1: Validation
+        // $request->validate(
+        //     [
+        //     'assessment_id' => 'required|integer|exists:incident_assessments,id', // Assuming the related table is 'incident_assessments'
+        //     'name' => 'required|string|max:255',
+        //     'id_passport_no' => 'required|string|max:50',
+        //     'address' => 'required|string|max:255',
+        //     'post_code' => 'nullable|string|max:10',
+        //     'county' => 'required|string|max:100',
+        //     'sub_county' => 'nullable|string|max:100',
+        //     'location' => 'nullable|string|max:100',
+        //     'sub_location' => 'nullable|string|max:100',
+        //     'constituency' => 'nullable|string|max:100',
+        //     'tel_no' => 'nullable|string|max:20',
+        //     'email' => 'nullable|email|max:100',
+        //     'sex' => 'required|in:MALE,FEMALE',
+        //     'age' => 'required|integer',
+        //     ]
+        // );
+
+        // dd($request->all());
+        $claimant = Claimant::create(
+            [
+            'incident_assessment_id' => $request->input('assessment_id'),
+            'name' => $request->input('name'),
+            'id_passport_no' => $request->input('id_passport_no'),
+            'address' => $request->input('address'),
+            'post_code' => $request->input('post_code'),
+            'county' => $request->input('county'),
+            'sub_county' => $request->input('sub_county'),
+            'location' => $request->input('location'),
+            'sub_location' => $request->input('sub_location'),
+            'constituency' => $request->input('constituency'),
+            'tel_no' => $request->input('tel_no'),
+            'email' => $request->input('email'),
+            'sex' => $request->input('sex'),
+            'age' => $request->input('age'),
+            ]
+        );
+        // dd($claimant);
+        $claimant->save();
+        session(['claimant_id' => $claimant->id]);
+        // if ($request->ajax()) {
+        //     // Return JSON response for AJAX request
+        //     return response()->json(['success' => 'Claimant successfully saved']);
+        // }
+        return response()->json(['success' => 'Claimant successfully saved']);
+
+    }
+
+    /**
+     * Summary of createKin
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function createKin(Request $request) 
+    {
+        $claimant_id = session('claimant_id');
+    
+        if(!$claimant_id) {
+            return redirect()->back()->with('error', 'Claimant ID not found.');
+        }
+    
+        // Create a new Next of Kin record in the database
+        $nextOfKin = NextOfKin::create(
+            [
+            'name' => $request->input('name'),
+            'claimant_id' => $claimant_id,
+            'id_passport_no' => $request->input('id_passport_no'),
+            'address' => $request->input('address'),
+            'post_code' => $request->input('post_code'),
+            'county' => $request->input('county'),
+            'sub_county' => $request->input('sub_county'),
+            'location' => $request->input('location'),
+            'sub_location' => $request->input('sub_location'),
+            'constituency' => $request->input('constituency'),
+            'tel_no' => $request->input('tel_no'),
+            'email' => $request->input('email'),
+            'age' => $request->input('age')
+            ]
+        );
+    
+        $nextOfKin->save();
+    
+        return response()->json(['success' => 'Next of Kin successfully saved']);
+    }
+
+    public function saveChiefComments(Request $request) 
+    {
+        $claimant_id = session('claimant_id');
+
+        if(!$claimant_id) {
+            return redirect()->back()->with('error', 'Claimant ID not found.');
+        }
+
+        $comments = ChiefComment::create(
+            [
+            'claimant_id' => $claimant_id,
+            'chief_comments' => $request->input('chief_comments'),
+            'chief_name' => $request->input('chief_name'),
+            'chief_phone' => $request->input('chief_phone'),
+            ]
+        );
+
+        $comments->save();
+        return response()->json(
+            [
+            'success' => 'Comments successfully saved',
+            'redirect_url' => route('compensation-incident')
+            ]
+        );
     }
 
 }

@@ -53,11 +53,21 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->belongsTo(Role::class);
     }
+    /**
+     * Summary of hasVerifiedEmail
+     * @return bool
+     */
     public function hasVerifiedEmail() 
     {
         return is_null($this->email_verified_at);
     }
 
+    /**
+     * Summary of canAccessPanel
+     *
+     * @param  \Filament\Panel $panel
+     * @return bool
+     */
     public function canAccessPanel(Panel $panel): bool
     {
         return $this->role_id === 1 && $this->hasVerifiedEmail();
