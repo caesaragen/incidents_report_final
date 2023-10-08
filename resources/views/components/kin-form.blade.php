@@ -4,6 +4,7 @@
         A.DETAILS FOR NEXT OF KIN
     </h6>
     @csrf
+    <input type="hidden" name="assessment_id" value="{{ $incident_assessment_id }}">
 <div class="flex flex-wrap">
     <!-- Full Name -->
    
@@ -22,7 +23,7 @@
             <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                 ID/Passport No
             </label>
-            <input type="text" name="id_passport_no" placeholder="ID/Passport No"
+            <input type="number" name="id_passport_no" placeholder="ID/Passport No"
                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mb-2">
         </div>
     </div>
@@ -96,7 +97,7 @@
             <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
               Phone
             </label>
-            <input type="text" name="tel_no" placeholder="phone"
+            <input type="tel" name="tel_no" placeholder="phone"
                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mb-2">
         </div>
     </div>
@@ -105,7 +106,7 @@
             <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
               E-mail
             </label>
-            <input type="text" name="email" placeholder="email"
+            <input type="email" name="email" placeholder="email"
                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mb-2">
         </div>
     </div>
@@ -114,7 +115,7 @@
             <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
               Age
             </label>
-            <input type="text" name="age" placeholder="Age"
+            <input type="number" name="age" placeholder="Age"
                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mb-2">
         </div>
     </div>

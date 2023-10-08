@@ -2,7 +2,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-white dark:text-gray-200 leading-tight">
-            {{ __('Recorded Incident Assessments') }}
+            {{ __('Crop Destruction Claims') }}
         </h2>
     </x-slot>
 
@@ -20,11 +20,11 @@
                             <thead>
                                 <tr>
                                     <th>Date Created</th>
-                                    <th>Incident Type</th>
-                                    <th>Warden Dispatched</th>
-                                    <th>Narrative</th>
-                                    <th>Discussion with Community</th>
-                                    <th>Monitoring and Survey</th>
+                                    <th>Claimant Name</th>
+                                    <th>Crop Name</th>
+                                    <th>Estimated Value</th>
+                                    <th>Place</th>
+                                    <th>Date of Incident</th>
                                     <th width="100px">Action</th>
                                 </tr>
                             </thead>
@@ -38,28 +38,27 @@
         </div>
     </div>
 </x-app-layout>
-
 <script type="text/javascript">
     $(function() {
         var table = $('.data-table').DataTable({
             processing: true,
             serverSide: true,
             responsive: true,
-            ajax: "{{ route('compensations.index') }}",
+            ajax: "{{ route('claims.index') }}", // Adjust the route if necessary
             columns: [
                 { data: 'created_at', name: 'created_at' },
-                { data: 'incident_type', name: 'incident_type' },
-                { data: 'warden_dispatched', name: 'warden_dispatched' },
-                { data: 'narrative', name: 'narrative' },
-                { data: 'discussion_with_community', name: 'discussion_with_community' },
-                { data: 'monitoring_and_survey', name: 'monitoring_and_survey' },
+                { data: 'claimant_name', name: 'claimant_name' },
+                { data: 'crop_name', name: 'crop_name' },
+                { data: 'value', name: 'value' },
+                { data: 'place', name: 'place' },
+                { data: 'date', name: 'date' },
                 {
                     data: 'action',
                     name: 'Action',
                     orderable: false,
                     searchable: false,
                     render: function(data, type, row) {
-                        return '<a href="{{ route('compensations.create', ['incident_assessment_id' => 'PLACEHOLDER']) }}" target="_blank" class="edit btn btn-success btn-sm">Launch Claim</a>'.replace('PLACEHOLDER', row.id);
+                        return '<a href="{{ route("claims.crop-damage", ["claim_id" => "PLACEHOLDER"]) }}" target="_blank" class="edit btn btn-primary btn-sm">View Claim</a>'.replace('PLACEHOLDER', row.id);
                     }
                 }
             ]

@@ -45,7 +45,7 @@
 let currentForm = 0;
 const forms = ['claimants', 'kin', 'comments'];
 let cropDamageForm = document.getElementById('crop_damage');
-// cropDamageForm.style.display = 'none';
+cropDamageForm.style.display = 'none';
 
 // Initialize forms: hide all except the first one
 forms.forEach((formId, index) => {
@@ -83,9 +83,9 @@ function handleFormSubmit(event, formId) {
     if (currentForm < forms.length) {
       document.getElementById(forms[currentForm]).style.display = 'block';
     }
-    if (data.success && data.refresh) {
+    if (data.success && currentForm == 3) {
       cropDamageForm.style.display = 'block';
-        location.reload(); // Or navigate to another URL
+        // location.reload(); // Or navigate to another URL
     }
   })
   .catch((error) => {

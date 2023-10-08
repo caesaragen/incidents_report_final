@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Incident;
 use App\Http\Controllers\Controller;
 use App\Models\ChiefComment;
 use App\Models\Claimant;
+use App\Models\CropDestruction;
 use App\Models\Incident;
 use App\Models\IncidentAssessment;
 use App\Models\NextOfKin;
@@ -95,15 +96,15 @@ class IncidentAssessmentController extends Controller
         return view('compensations.index', compact('incident_assessments'));
     }
     
-    public function claim()
+    public function claim($incident_assessment_id)
     {
-        $assessment_id = request('assessment_id');
-        $incident = IncidentAssessment::where('id', $assessment_id)->first();
+        $incident = IncidentAssessment::where('id', $incident_assessment_id)->first();
         $incident_type = $incident->incident->ob->incidentType->name;
-        // dd($incident_type);
-        // dd($incident);
-        return view('compensations.create', compact('assessment_id', 'incident_type'));
+        return view('compensations.create', compact('incident_assessment_id', 'incident_type'));
     }
+    
+    
+    
 
     public function saveClaimant(Request $request) 
     {
@@ -165,17 +166,15 @@ class IncidentAssessmentController extends Controller
      */
     public function createKin(Request $request) 
     {
-        $claimant_id = session('claimant_id');
+        $assessment_id = $request->input('assessment_id');
+        $claimant_id = Claimant::where('incident_assessment_id', $assessment_id)->first()->id;
     
-        if(!$claimant_id) {
-            return redirect()->back()->with('error', 'Claimant ID not found.');
-        }
     
         // Create a new Next of Kin record in the database
         $nextOfKin = NextOfKin::create(
             [
             'name' => $request->input('name'),
-            'claimant_id' => $claimant_id,
+            'claimant_id' =>  $claimant_id ,
             'id_passport_no' => $request->input('id_passport_no'),
             'address' => $request->input('address'),
             'post_code' => $request->input('post_code'),
@@ -197,11 +196,8 @@ class IncidentAssessmentController extends Controller
 
     public function saveChiefComments(Request $request) 
     {
-        $claimant_id = session('claimant_id');
-
-        if(!$claimant_id) {
-            return redirect()->back()->with('error', 'Claimant ID not found.');
-        }
+        $assessment_id = $request->input('assessment_id');
+        $claimant_id = Claimant::where('incident_assessment_id', $assessment_id)->first()->id;
 
         $comments = ChiefComment::create(
             [
@@ -215,10 +211,103 @@ class IncidentAssessmentController extends Controller
         $comments->save();
         return response()->json(
             [
-            'success' => 'Comments successfully saved',
-            'redirect_url' => route('compensation-incident')
+            'success' => 'Comments successfully saved'
             ]
         );
     }
+
+    public function saveCropsDestruction(Request $request)
+    {
+        $assessment_id = $request->input('assessment_id');
+        $claimant_id = Claimant::where('incident_assessment_id', $assessment_id)->first()->id;
+
+        $cropsDestruction = CropDestruction::create(
+            [
+            'claimant_id' => $claimant_id,
+            'circumstances' => $request->input('circumstances'),
+            'crop_name' => $request->input('crop_name'),
+            'animal_responsible' => $request->input('animal_responsible'),
+            'land_ownership_status' => $request->input('land_ownership_status'),
+            'acreage' => $request->input('acreage'),
+            'stage' => $request->input('stage'),
+            'value' => $request->input('value'),
+            'measures' => $request->input('measures'),
+            'place' => $request->input('place'),
+            'location_status' => $request->input('location_status'),
+            'date' => $request->input('date'),
+            'time' => $request->input('time'),
+            'verified_by' => $request->input('verified_by'),
+            'est_no' => $request->input('est_no'),
+            'designation' => $request->input('designation'),
+            'signature' => $request->input('signature'),
+            ]
+        );
+
+        $cropsDestruction->save();
+        return view('claims.index')->with('success', 'Crops destruction successfully saved');
+    }
+
+    public function showCropClaims(Request $request)
+    {
+        if($request->ajax()) {
+            $data = CropDestruction::select('*');
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->editColumn(
+                    'created_at', function ($row) {
+                        return Carbon::parse($row->created_at)->format('Y-m-d');
+                    }
+                )
+                ->editColumn(
+                    'crop_name', function ($row) {
+                        return $row->crop_name;
+                    }
+                )
+                ->addColumn(
+                    'claimant_name', function ($row) {
+                        return $row->claimant->name;
+                    }
+                )
+                ->editColumn(
+                    'value', function ($row) {
+                        return $row->value;
+                    }
+                )
+                ->editColumn(
+                    'place', function ($row) {
+                        return $row->place;
+                    }
+                )
+                ->editColumn(
+                    'date', function ($row) {
+                        return $row->date;
+                    }
+                )
+                ->addColumn(
+                    'action', function ($row) {
+                        $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+                        return $btn;
+                    }
+                )
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        $crops_destruction = CropDestruction::all();
+        return view('claims.index', compact('crops_destruction'));
+    }
+
+    public function showSingleClaim($claim_id)
+    {
+        $cropDestruction = CropDestruction::where('id', $claim_id)->first();
+        return view('compensations.crop-damage', compact('cropDestruction'));
+    }
+
+    public function areaWarden($claim_id)
+    {
+        $cropDestruction = CropDestruction::where('id', $claim_id)->first();
+        
+        return view('compensations.area-warden', compact('cropDestruction'));
+    }
+    
 
 }

@@ -44,10 +44,16 @@ Route::middleware('auth')->group(
         Route::get('/incidents/report', [IncidentsController::class, 'incidentAssessment'])->name('incidents.report');
         Route::post('/incidents/assessment', [IncidentAssessmentController::class, 'create'])->name('incidents.assessment.store');
         Route::get('/assessment/all', [IncidentAssessmentController::class, 'index'])->name('compensations.index');
-        Route::get('/compensation/create', [IncidentAssessmentController::class, 'claim'])->name('compensations.create');
+        // Route::get('/compensation/create', [IncidentAssessmentController::class, 'claim'])->name('compensations.create');
+        // Route::get('/compensation/create/{assessment_id}', [IncidentAssessmentController::class, 'claim'])->name('compensations.create');
+        Route::get('/compensation/create/{incident_assessment_id}', [IncidentAssessmentController::class, 'claim'])->name('compensations.create');
         Route::post('/claimants/store', [IncidentAssessmentController::class, 'saveClaimant'])->name('claimants.store');
         Route::post('/kin/store', [IncidentAssessmentController::class, 'createKin'])->name('kin.store');
         Route::post('/comments/store', [IncidentAssessmentController::class, 'saveChiefComments'])->name('comments.store');
+        Route::post('crops/store', [IncidentAssessmentController::class, 'saveCropsDestruction'])->name('crops.store');
+        Route::get('/claims/all', [IncidentAssessmentController::class, 'showCropClaims'])->name('claims.index');
+        Route::get('/claims/crop-damage/{claim_id}',  [IncidentAssessmentController::class, 'showSingleClaim'])->name('claims.crop-damage');
+        Route::get('area-warden/claim/{claim-id}', [IncidentAssessmentController::class, 'areaWarden'])->name('area-warden.report');
     }
 );
 

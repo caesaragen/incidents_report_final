@@ -5,7 +5,7 @@
     </h6>
     @csrf
 <div class="flex flex-wrap">
-   
+    <input type="hidden" name="assessment_id" value="{{ $incident_assessment_id }}">
     <div class="w-full lg:w-12/12 px-4">
         <div class="relative w-full mb-3">
             <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
