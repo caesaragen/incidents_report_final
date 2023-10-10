@@ -10,14 +10,14 @@ class PropertyDamage extends Model
     use HasFactory;
 
     protected $fillable = [
-        'assessment_id', 'circumstances', 'no_of_adult', 'estimated_value',
+        'claimant_id', 'circumstances', 'no_of_adult', 'estimated_value',
         'animal_responsible', 'total_estimated_value', 'place_of_incident',
         'date_of_incident', 'time_of_incident', 'verified_by_name', 'est_no',
-        'details_of_incident', 'insert_name', 'date_verified', 'designation'
+        'details_of_incident',  'designation', 'insideOrOutsidePA'
     ];
 
-    public function assessment()
-    {
-        return $this->belongsTo(IncidentAssessment::class);
-    }
+  public function claimant()
+  {
+      return $this->belongsTo(Claimant::class);
+  }
 }

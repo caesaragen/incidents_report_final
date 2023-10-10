@@ -273,7 +273,7 @@ class IncidentAssessmentController extends Controller
             ]
         );
         $humanDeath->save();
-        return view('claims.index')->with('success', 'Human death successfully saved');
+        return view('claims.mortality')->with('success', 'Human death successfully saved');
     } 
 
     public function savePropertyDamage(Request $request)
@@ -298,10 +298,13 @@ class IncidentAssessmentController extends Controller
             'insert_name' => $request->input('insert_name'),
             'date_verified' => $request->input('date_verified'),
             'designation' => $request->input('designation'),
+            'insideOrOutsidePA' => $request->input('insideOrOutsidePA'),
             ]
         );
-
+        // dd($propertyDamage);
         $propertyDamage->save();
+
+        return view('claims.properties')->with('success', 'Property damage successfully saved');
 
     }
     public function showCropClaims(Request $request)
@@ -353,10 +356,144 @@ class IncidentAssessmentController extends Controller
         return view('claims.index', compact('crops_destruction'));
     }
 
+    public function showPropertyClaims(Request $request)
+    {
+        if($request->ajax()) {
+            $data = PropertyDamage::select('*');
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->editColumn(
+                    'created_at', function ($row) {
+                        return Carbon::parse($row->created_at)->format('Y-m-d');
+                    }
+                )
+                ->editColumn(
+                    'circumstances', function ($row) {
+                        return $row->circumstances;
+                    }
+                )
+                ->addColumn(
+                    'claimant_name', function ($row) {
+                        return $row->claimant->name;
+                    }
+                )
+                ->editColumn(
+                    'animal_responsible', function ($row) {
+                        return $row->animal_responsible;
+                    }
+                )
+                ->editColumn(
+                    'place_of_incident', function ($row) {
+                        return $row->place_of_incident;
+                    }
+                )
+                ->editColumn(
+                    'date_of_incident', function ($row) {
+                        return $row->date_of_incident;
+                    }
+                )
+                ->addColumn(
+                    'action', function ($row) {
+                        $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+                        return $btn;
+                    }
+                )
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        $property_damages = PropertyDamage::all();
+        return view('claims.properties', compact('property_damages'));
+    }
+
+    public function showHumanDeathClaims(Request $request)
+    {
+        if($request->ajax()) {
+            $data = HumanDeath::with('claimant')->select('human_deaths.*'); // Ensure to use correct relationship method name
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->editColumn(
+                    'created_at', function ($row) {
+                        return Carbon::parse($row->created_at)->format('Y-m-d');
+                    }
+                )
+                ->addColumn(
+                    'claimant_name', function ($row) {
+                        return $row->claimant->name; // Assuming there's a 'name' column in the related 'claimant' table
+                    }
+                )
+                ->make(true);
+        }
+
+        $human_deaths = HumanDeath::all();
+        return view('claims.mortality', compact('human_deaths')); // Assuming you have a mortality.index view
+    }
+
+    
+    // public function showHumanDeathClaims(Request $request)
+    // {
+    //     if($request->ajax()) {
+    //         $data = HumanDeath::select('*');
+    //         return DataTables::of($data)
+    //             ->addIndexColumn()
+    //             ->editColumn(
+    //                 'created_at', function ($row) {
+    //                     return Carbon::parse($row->created_at)->format('Y-m-d');
+    //                 }
+    //             )
+    //             ->editColumn(
+    //                 'place_of_death', function ($row) {
+    //                     return $row->place_of_death;
+    //                 }
+    //             )
+    //             ->addColumn(
+    //                 'claimant_name', function ($row) {
+    //                     return $row->claimant->name;
+    //                 }
+    //             )
+    //             ->editColumn(
+    //                 'animal_responsible', function ($row) {
+    //                     return $row->animal_responsible;
+    //                 }
+    //             )
+    //             ->editColumn(
+    //                 'date_of_incident', function ($row) {
+    //                     return $row->date_of_incident;
+    //                 }
+    //             )
+    //             ->editColumn(
+    //                 'time_of_incident', function ($row) {
+    //                     return $row->time_of_incident;
+    //                 }
+    //             )
+    //             ->addColumn(
+    //                 'action', function ($row) {
+    //                     $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+    //                     return $btn;
+    //                 }
+    //             )
+    //             ->rawColumns(['action'])
+    //             ->make(true);
+    //     }
+    //     $human_deaths = HumanDeath::all();
+    //     return view('claims.mortality', compact('human_deaths'));
+    // }
+
     public function showSingleClaim($claim_id)
     {
         $cropDestruction = CropDestruction::where('id', $claim_id)->first();
         return view('compensations.crop-damage', compact('cropDestruction'));
+    }
+
+    public function showMortality($claim_id)
+    {
+        $humanDeath = HumanDeath::where('id', $claim_id)->first();
+        return view('compensations.mortality', compact('humanDeath'));
+    }
+
+    public function showProperty($claim_id)
+    {
+        $propertyDamage = PropertyDamage::where('id', $claim_id)->first();
+        return view('compensations.property-damage', compact('propertyDamage'));
     }
 
     public function areaWarden($claim_id)

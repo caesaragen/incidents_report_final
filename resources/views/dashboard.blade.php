@@ -12,10 +12,18 @@
             <x-action-button class="p-2 m-2" x-data=""
                 x-on:click.prevent="$dispatch('open-modal', 'ob-form-modal')" data-modal-toggle="ob-form-modal">
                 {{ __('Create New OB') }}</x-action-button>
-                <a href="{{ route('claims.index') }}"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                View Claims
+                <a href="{{ route('claims.index') }}" target="_blank"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-2 rounded">
+                Crop Damage Claims
             </a>
+            <a href="{{ route('properties.index') }}" target="_blank"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+            Property Damage Claims
+        </a>
+        <a href="{{ route('mortality.index') }}" target="_blank"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+         Mortality Claims
+    </a>
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @if (session('success'))
