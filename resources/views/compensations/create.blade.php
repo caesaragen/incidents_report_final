@@ -32,9 +32,19 @@
 
                             @if ($incident_type == 'CROP DAMAGE')
                               @include('components.crop-damage-form')
+                              @elseif ($incident_type == 'HUMAN DEATH')
+                              @include('components.human-death-form')
+                              @elseif ($incident_type == 'PROPERTY DAMAGE')
+                              @include('components.property-destruction-form')
                             @endif
                            
                     </div>
+                    {{-- @if ($incident_type == 'HUMAN DEATH')
+                      @include('components.human-death-form')
+                    @endif
+                    @if ($incident_type == 'PROPERTY DAMAGE')
+                    @include('components.property-destruction-form')
+                  @endif --}}
                 </div>
             </div>
         </div>
@@ -45,7 +55,18 @@
 let currentForm = 0;
 const forms = ['claimants', 'kin', 'comments'];
 let cropDamageForm = document.getElementById('crop_damage');
-cropDamageForm.style.display = 'none';
+let humanDeathForm = document.getElementById('human_death');
+let propertyDestructionForm = document.getElementById('property_destruction');
+if (cropDamageForm){
+  cropDamageForm.style.display = 'none';
+}
+if (humanDeathForm){
+  humanDeathForm.style.display = 'none';
+}
+if (propertyDestructionForm){
+  propertyDestructionForm.style.display = 'none';
+}
+
 
 // Initialize forms: hide all except the first one
 forms.forEach((formId, index) => {
@@ -83,8 +104,16 @@ function handleFormSubmit(event, formId) {
     if (currentForm < forms.length) {
       document.getElementById(forms[currentForm]).style.display = 'block';
     }
-    if (data.success && currentForm == 3) {
+    if (data.success && currentForm == 3 && cropDamageForm) {
       cropDamageForm.style.display = 'block';
+        // location.reload(); // Or navigate to another URL
+    } 
+    if (data.success && currentForm == 3 && humanDeathForm) {
+      humanDeathForm.style.display = 'block';
+        // location.reload(); // Or navigate to another URL
+    }
+    if (data.success && currentForm == 3 && propertyDestructionForm) {
+      propertyDestructionForm.style.display = 'block';
         // location.reload(); // Or navigate to another URL
     }
   })

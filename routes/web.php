@@ -51,6 +51,8 @@ Route::middleware('auth')->group(
         Route::post('/kin/store', [IncidentAssessmentController::class, 'createKin'])->name('kin.store');
         Route::post('/comments/store', [IncidentAssessmentController::class, 'saveChiefComments'])->name('comments.store');
         Route::post('crops/store', [IncidentAssessmentController::class, 'saveCropsDestruction'])->name('crops.store');
+        Route::post('properties/store', [IncidentAssessmentController::class, 'savePropertyDamage'])->name('properties.store');
+        Route::post('human/deaths/store', [IncidentAssessmentController::class, 'saveHumanDeath'])->name('human.deaths.store');
         Route::get('/claims/all', [IncidentAssessmentController::class, 'showCropClaims'])->name('claims.index');
         Route::get('/claims/crop-damage/{claim_id}',  [IncidentAssessmentController::class, 'showSingleClaim'])->name('claims.crop-damage');
         Route::get('area-warden/claim/{claim-id}', [IncidentAssessmentController::class, 'areaWarden'])->name('area-warden.report');

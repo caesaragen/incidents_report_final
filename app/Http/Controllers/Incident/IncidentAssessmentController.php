@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\ChiefComment;
 use App\Models\Claimant;
 use App\Models\CropDestruction;
+use App\Models\HumanDeath;
 use App\Models\Incident;
 use App\Models\IncidentAssessment;
 use App\Models\NextOfKin;
+use App\Models\PropertyDamage;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -185,7 +187,8 @@ class IncidentAssessmentController extends Controller
             'constituency' => $request->input('constituency'),
             'tel_no' => $request->input('tel_no'),
             'email' => $request->input('email'),
-            'age' => $request->input('age')
+            'age' => $request->input('age'),
+            'relationship' => $request->input('relationship'),
             ]
         );
     
@@ -246,7 +249,61 @@ class IncidentAssessmentController extends Controller
         $cropsDestruction->save();
         return view('claims.index')->with('success', 'Crops destruction successfully saved');
     }
+    public function saveHumanDeath(Request $request)
+    {
+        $assessment_id = $request->input('assessment_id');
+        $claimant_id = Claimant::where('incident_assessment_id', $assessment_id)->first()->id;
 
+        $humanDeath = HumanDeath::create(
+            [
+            'claimant_id' => $claimant_id,
+            'place_of_death' => $request->input('place_of_death'),
+            'animal_responsible' => $request->input('animal_responsible'),
+            'inside_outside_pa' => $request->input('inside_outside_pa'),
+            'gps_coordinates' => $request->input('gps_coordinates'),
+            'date_of_incident' => $request->input('date_of_incident'),
+            'time_of_incident' => $request->input('time_of_incident'),
+            'circumstances' => $request->input('circumstances'),
+            'verifying_officer' => $request->input('verifying_officer'),
+            'est_no' => $request->input('est_no'),
+            'warden_details' => $request->input('warden_details'),
+            'name' => $request->input('name'),
+            'verification_date' => $request->input('verification_date'),
+            'designation' => $request->input('designation'),
+            ]
+        );
+        $humanDeath->save();
+        return view('claims.index')->with('success', 'Human death successfully saved');
+    } 
+
+    public function savePropertyDamage(Request $request)
+    {
+        $assessment_id = $request->input('assessment_id');
+        $claimant_id = Claimant::where('incident_assessment_id', $assessment_id)->first()->id;
+
+        $propertyDamage = PropertyDamage::create(
+            [
+            'claimant_id' => $claimant_id,
+            'circumstances' => $request->input('circumstances'),
+            'no_of_adult' => $request->input('no_of_adult'),
+            'estimated_value' => $request->input('estimated_value'),
+            'animal_responsible' => $request->input('animal_responsible'),
+            'total_estimated_value' => $request->input('total_estimated_value'),
+            'place_of_incident' => $request->input('place_of_incident'),
+            'date_of_incident' => $request->input('date_of_incident'),
+            'time_of_incident' => $request->input('time_of_incident'),
+            'verified_by_name' => $request->input('verified_by_name'),
+            'est_no' => $request->input('est_no'),
+            'details_of_incident' => $request->input('details_of_incident'),
+            'insert_name' => $request->input('insert_name'),
+            'date_verified' => $request->input('date_verified'),
+            'designation' => $request->input('designation'),
+            ]
+        );
+
+        $propertyDamage->save();
+
+    }
     public function showCropClaims(Request $request)
     {
         if($request->ajax()) {

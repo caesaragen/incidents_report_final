@@ -1,13 +1,20 @@
-<form method="post" action="{{ route('claimants.store') }}" class="p-6" id="claimants" onsubmit="handleFormSubmit(event, 'claimants')">
+<form method="post" action="{{ route('claimants.store') }}" class="container mx-auto mt-4 p-6 border border-gray-300 rounded-md"id="claimants" onsubmit="handleFormSubmit(event, 'claimants')">
     @csrf
     <input type="hidden" name="assessment_id" value="{{ $incident_assessment_id }}">
     <div class="flex flex-wrap">
         <!-- Full Name -->
         <div class="w-full lg:w-12/12 px-4">
             <div class="relative w-full mb-3">
+                @if ($incident_type == 'CROP DAMAGE')
                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                     Name of Affected 
                 </label>
+                @elseif ($incident_type == 'HUMAN DEATH')
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                    Name of Victim 
+                </label>
+              @endif
+ 
                 <input type="text" name="name" placeholder="Name" required
                        class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 mb-2">
             </div>

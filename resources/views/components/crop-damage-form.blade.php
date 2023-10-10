@@ -1,5 +1,5 @@
 
-<form method="post" action="{{ route('crops.store') }}"  class="p-6" id="crop_damage" >
+<form method="post" action="{{ route('crops.store') }}"  class="container mx-auto mt-4 p-6 border border-gray-300 rounded-md" id="crop_damage" >
     <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
         CROP DESTRUCTION (KWS VERYING OFFICER TO FILL)
     </h6>

@@ -24,6 +24,7 @@ class NextOfKin extends Model
         'tel_no',
         'email',
         'age',
+        'relationship'
     ];
 
     /**

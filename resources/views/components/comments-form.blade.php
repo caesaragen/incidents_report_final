@@ -1,5 +1,5 @@
 
-<form method="post" action="{{ route('comments.store') }}" class="p-6" id="comments" onsubmit="handleFormSubmit(event, 'comments')">
+<form method="post" action="{{ route('comments.store') }}" class="container mx-auto mt-4 p-6 border border-gray-300 rounded-md" id="comments" onsubmit="handleFormSubmit(event, 'comments')">
     <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
         B. COMMENTS BY CHIEF
     </h6>
