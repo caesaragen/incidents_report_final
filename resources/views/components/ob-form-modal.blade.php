@@ -47,8 +47,7 @@
             </div>
             <div class="mb-6 w-full">
                 <x-input-label for="narrative" class="mb-2">{{ __('Narrative') }}</x-input-label>
-                <textarea class="w-full" id="narrative" name="narrative" type="text" placeholder="Narrative" >
-                </textarea>
+                <textarea class="w-full" id="narrative" name="narrative" type="text" placeholder="Narrative" ></textarea>
                 <x-input-error :messages="$errors->get('narrative')" class="mt-2" />
             </div>
             <div class="mt-6 flex justify-end">
