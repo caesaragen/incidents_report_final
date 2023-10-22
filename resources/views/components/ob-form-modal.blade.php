@@ -24,7 +24,12 @@
                 <x-text-input id="id_number" name="id_number" type="text" placeholder="ID Number" />
                 <x-input-error :messages="$errors->get('id_number')" class="mt-2" />
             </div>
-    
+
+            <div class="mb-6">
+                <x-input-label for="date_of_incident" class="mb-2">{{ __('Date of Incident') }}</x-input-label>
+                <x-text-input id="date_of_incident" name="date_of_incident" type="date" placeholder="Date of Incident" />
+                <x-input-error :messages="$errors->get('date_of_incident')" class="mt-2" />
+            </div>
             <div class="mb-6">
                 <x-input-label for="name_of_affected" class="mb-2">{{ __('Name of Affected') }}</x-input-label>
                 <x-text-input id="name_of_affected" name="name_of_affected" type="text" placeholder="Name of Affected" />

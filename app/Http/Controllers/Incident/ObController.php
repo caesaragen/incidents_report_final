@@ -50,13 +50,14 @@ class ObController extends Controller
     public function store(ObRequest $request) : \Illuminate\Http\RedirectResponse
     {
         $validated = $request->validated();
-        // dd($validated);
+        // dd($request->all());
         $ob_number = $request->input('ob_number');
         $reporting_name = $request->input('reporting_name');
         $id_number = $request->input('id_number');
         $incident_type = $request->input('incident_type');
         $name_of_affected = $request->input('name_of_affected');
         $narrative = $request->input('narrative');
+        $date_of_incident = $request->input('date_of_incident');
         $user_id = Auth::user()->id;
         $ob = Ob::create(
             [
@@ -67,6 +68,7 @@ class ObController extends Controller
             'name_of_affected' => $name_of_affected,
             'narrative' => $narrative,
             'user_id' => $user_id,
+            'date_of_incident' => $date_of_incident,
             ]
         );
 

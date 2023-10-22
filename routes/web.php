@@ -60,6 +60,9 @@ Route::middleware('auth')->group(
         Route::get('area-warden/claim/{claim-id}', [IncidentAssessmentController::class, 'areaWarden'])->name('area-warden.report');
         Route::get('/claims/mortality/{claim_id}',  [IncidentAssessmentController::class, 'showMortality'])->name('claims.mortality');
         Route::get('/claims/property/{claim_id}',  [IncidentAssessmentController::class, 'showProperty'])->name('claims.property');
+        Route::post('crops/attachments/store', [IncidentAssessmentController::class, 'storeCropAttachments'])->name('crop.attachments.store');
+        Route::post('damage/attachments/store', [IncidentAssessmentController::class, 'storeDamageAttachments'])->name('damage.attachments.store');
+        Route::post('mortality/attachments/store', [IncidentAssessmentController::class, 'storeMortalityAttachments'])->name('mortality.attachments.store');
     }
 );
 

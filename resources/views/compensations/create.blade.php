@@ -32,9 +32,9 @@
 
                             @if ($incident_type == 'CROP DAMAGE')
                               @include('components.crop-damage-form')
-                              @elseif ($incident_type == 'HUMAN DEATH')
+                              @elseif ($incident_type == 'HUMAN DEATH' || $incident_type == 'HUMAN THREAT')
                               @include('components.human-death-form')
-                              @elseif ($incident_type == 'PROPERTY DAMAGE')
+                              @elseif ($incident_type == 'PROPERTY DAMAGE' || $incident_type == 'PREDATION')
                               @include('components.property-destruction-form')
                             @endif
                            

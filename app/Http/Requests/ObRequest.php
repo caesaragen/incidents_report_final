@@ -28,6 +28,7 @@ class ObRequest extends FormRequest
             'incident_type' => 'required|exists:incident_types,id', 
             'name_of_affected' => 'required|string|max:25',
             'narrative' => 'nullable|string',
+            'date_of_incident' => 'required|date',
         ];
     }
 

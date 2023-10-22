@@ -5,15 +5,20 @@ namespace App\Http\Controllers\Incident;
 use App\Http\Controllers\Controller;
 use App\Models\ChiefComment;
 use App\Models\Claimant;
+use App\Models\County;
+use App\Models\CropDamageAttachment;
 use App\Models\CropDestruction;
+use App\Models\DestructionAttachment;
 use App\Models\HumanDeath;
 use App\Models\Incident;
 use App\Models\IncidentAssessment;
+use App\Models\MortalityAttachment;
 use App\Models\NextOfKin;
 use App\Models\PropertyDamage;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class IncidentAssessmentController extends Controller
 {
@@ -100,9 +105,11 @@ class IncidentAssessmentController extends Controller
     
     public function claim($incident_assessment_id)
     {
+        $counties = County::all();
+        
         $incident = IncidentAssessment::where('id', $incident_assessment_id)->first();
         $incident_type = $incident->incident->ob->incidentType->name;
-        return view('compensations.create', compact('incident_assessment_id', 'incident_type'));
+        return view('compensations.create', compact('incident_assessment_id', 'incident_type', 'counties'));
     }
     
     
@@ -478,22 +485,42 @@ class IncidentAssessmentController extends Controller
     //     return view('claims.mortality', compact('human_deaths'));
     // }
 
-    public function showSingleClaim($claim_id)
+    /**
+     * Summary of showSingleClaim
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  mixed                    $claim_id
+     * @return mixed
+     */
+    public function showSingleClaim(Request $request, $claim_id)
     {
         $cropDestruction = CropDestruction::where('id', $claim_id)->first();
-        return view('compensations.crop-damage', compact('cropDestruction'));
+        $cropDestruction_id = $cropDestruction->id;
+        $attachments = CropDamageAttachment::where('crops_destruction_id', $cropDestruction_id)->get();
+        // dd($attachments);
+        if ($request->has('download')) {
+            $pdf = Pdf::loadView('components.crop-report', compact('cropDestruction'));
+            
+            return $pdf->download('crop_destruction_claim_' . $claim_id . '.pdf');
+        }
+
+        return view('compensations.crop-damage', compact('cropDestruction', 'cropDestruction_id', 'attachments'));
     }
 
     public function showMortality($claim_id)
     {
         $humanDeath = HumanDeath::where('id', $claim_id)->first();
-        return view('compensations.mortality', compact('humanDeath'));
+        $human_death_id = $humanDeath->id;
+        $attachments = MortalityAttachment::where('human_deaths_id', $human_death_id)->get();
+        return view('compensations.mortality', compact('humanDeath', 'human_death_id', 'attachments'));
     }
 
     public function showProperty($claim_id)
     {
         $propertyDamage = PropertyDamage::where('id', $claim_id)->first();
-        return view('compensations.property-damage', compact('propertyDamage'));
+        $property_damages_id = $propertyDamage->id;
+        $attachments = DestructionAttachment::where('property_damages_id', $property_damages_id)->get();
+        return view('compensations.property-damage', compact('propertyDamage', 'property_damages_id', 'attachments'));
     }
 
     public function areaWarden($claim_id)
@@ -503,5 +530,128 @@ class IncidentAssessmentController extends Controller
         return view('compensations.area-warden', compact('cropDestruction'));
     }
     
+    public function storeCropAttachments(Request $request)
+    {
+        // $request->validate([
+        //     'agricultural_officer' => 'required|file|max:10240', // 10 MB
+        //     'cwc_recommendations' => 'required|file|max:10240', // 10 MB
+        //     'mwc_recommendations' => 'required|file|max:10240', // 10 MB
+        // ]);
+    
+        // Assuming you have a claim_id to associate with these attachments
+        $crop_destruction_id = $request->input('crop_destruction_id');
+    
+        // Find the claim or fail
+    
+        // Define attachment types and their corresponding request names
+        $attachmentTypes = [
+            'Valuation officer (agricultural/livestock officer report)' => 'agricultural_officer',
+            'County wildlife compensation committee recommendations' => 'cwc_recommendations',
+            'Ministerial wildlife compensation committee recommendation' => 'mwc_recommendations',
+        ];
+    
+        foreach ($attachmentTypes as $type => $requestName) {
+            if ($request->hasFile($requestName)) {
+                $file = $request->file($requestName);
+    
+                // Store the file and get its path
+                $path = $file->store('attachments', 'public');
+    
+                // Create a new attachment record
+                $attachment = new CropDamageAttachment();
+                $attachment->crops_destruction_id = $crop_destruction_id;
+                $attachment->type = $type;
+                $attachment->file_path = $path;
+    
+                // Save the attachment
+                $attachment->save();
+            }
+        }
+    
+        return redirect()->back()->with('status', 'Attachments added successfully.');
+    }
+    public function storeDamageAttachments(Request $request)
+    {
+        // Uncomment this if you want to validate the files
+        // $request->validate([
+        //     'agricultural_officer' => 'nullable|file|max:10240', // 10 MB
+        //     'cwc_recommendations' => 'nullable|file|max:10240', // 10 MB
+        //     'mwc_recommendations' => 'nullable|file|max:10240', // 10 MB
+        // ]);
+            // dd($request->all());
+        $property_damages_id = $request->input('property_damages_id');
+    
+        $attachmentTypes = [
+            'Valuation officer (agricultural/livestock officer report)' => 'agricultural_officer',
+            'County wildlife compensation committee recommendations' => 'cwc_recommendations',
+            'Ministerial wildlife compensation committee recommendation' => 'mwc_recommendations',
+        ];
+    
+        foreach ($attachmentTypes as $type => $requestName) {
+            if ($request->hasFile($requestName)) {
+                $file = $request->file($requestName);
+                // dd($file);
+                $path = $file->store('attachments', 'public');
+    
+                // Using create method
+                DestructionAttachment::create(
+                    [
+                    'property_damages_id' => $property_damages_id,
+                    'type' => $type,
+                    'file_path' => $path,
+                    ]
+                );
+            }
+        }
+    
+        return redirect()->back()->with('status', 'Attachments added successfully.');
+    }
+    
 
+    public function storeMortalityAttachments(Request $request)
+    {
+        // Validation rules can be uncommented and modified as needed
+        // $request->validate([
+        //     'oic' => 'required|file|max:10240',
+        //     'medical' => 'required|file|max:10240',
+        //     // ... other validation rules
+        // ]);
+    
+        // Assuming you have a mortality_id to associate with these attachments
+        $human_death_id = $request->input('human_death_id');
+    
+        // Define attachment types and their corresponding request names
+        $attachmentTypes = [
+            'Officer In Charge of a police station or post' => 'oic',
+            'Medical officer report' => 'medical',
+            'Ministerial wildlife compensation committee recommendation' => 'mwc_recommendations',
+            'County wildlife compensation committee recommendations' => 'cwc_recommendations',
+            'Relationship of next of kin to the victim' => 'kin_relationship',
+            'Birth notification' => 'birth_notification',
+            'Birth certificate' => 'birth_certificate',
+            'Marriage certificate' => 'marriage_certificate',
+            'Sworn affidavit' => 'sworn_affidavit',
+        ];
+    
+        foreach ($attachmentTypes as $type => $requestName) {
+            if ($request->hasFile($requestName)) {
+                $file = $request->file($requestName);
+    
+                // Store the file and get its path
+                $path = $file->store('attachments', 'public');
+    
+                // Create a new attachment record
+                $attachment = new MortalityAttachment();  // Assuming you have a MortalityAttachment model
+                $attachment->mortality_id = $human_death_id;  // Change this to the appropriate foreign key
+                $attachment->type = $type;
+                $attachment->file_path = $path;
+    
+                // Save the attachment
+                $attachment->save();
+            }
+        }
+    
+        return redirect()->back()->with('status', 'Attachments added successfully.');
+    }
+    
 }

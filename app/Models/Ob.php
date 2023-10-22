@@ -22,6 +22,7 @@ class Ob extends Model
         'name_of_affected',
         'narrative',
         'user_id',
+        'date_of_incident',
     ];
 
     /**

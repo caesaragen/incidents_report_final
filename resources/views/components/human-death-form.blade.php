@@ -3,7 +3,7 @@
     <h3 class="text-center text-lg font-bold mb-4">PART II: PARTICULARS OF DEATH / INJURY (KWS VERIFYING OFFICER TO FILL)</h3>
     <input type="hidden" name="assessment_id" value="{{ $incident_assessment_id }}">
     <div class="mb-4">
-        <label for="place_of_death" class="block text-gray-700 text-sm font-bold mb-2">1. PLACE OF DEATH/INJURY:</label>
+        <label for="place_of_death" class="block text-gray-700 text-sm font-bold mb-2">PLACE OF DEATH/INJURY:</label>
         <input name="place_of_death" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="placeOfDeath" placeholder="Enter place of death or injury">
     </div>
 
@@ -13,7 +13,7 @@
     </div>
 
     <div class="mb-4">
-        <label for="insideOutsidePA" class="block text-gray-700 text-sm font-bold mb-2">2. INDICATE IF INSIDE OR OUTSIDE PA:</label>
+        <label for="insideOutsidePA" class="block text-gray-700 text-sm font-bold mb-2">INDICATE IF INSIDE OR OUTSIDE PA:</label>
         <input name="inside_outside_pa" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="insideOutsidePA" placeholder="Enter location relative to PA">
     </div>
 
@@ -24,7 +24,7 @@
 
     <div class="mb-4 grid grid-cols-2 gap-4">
         <div>
-            <label for="dateOfIncident" class="block text-gray-700 text-sm font-bold mb-2">3. DATE:</label>
+            <label for="dateOfIncident" class="block text-gray-700 text-sm font-bold mb-2">DATE:</label>
             <input name="date_of_incident" type="date" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="dateOfIncident">
         </div>
         <div>
@@ -34,7 +34,7 @@
     </div>
 
     <div class="mb-4">
-        <label for="circumstances" class="block text-gray-700 text-sm font-bold mb-2">4. CIRCUMSTANCES OF DEATH/INJURY</label>
+        <label for="circumstances" class="block text-gray-700 text-sm font-bold mb-2">CIRCUMSTANCES OF DEATH/INJURY</label>
         <textarea name="circumstances" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="circumstances" rows="4"></textarea>
     </div>
 
@@ -52,7 +52,7 @@
     </div>
 
     <div class="mb-4">
-        <label for="wardenDetails" class="block text-gray-700 text-sm font-bold mb-2">3. BRIEF DETAILS OF THE INCIDENT BY KWS COUNTY WARDEN</label>
+        <label for="wardenDetails" class="block text-gray-700 text-sm font-bold mb-2">BRIEF DETAILS OF THE INCIDENT BY KWS COUNTY WARDEN</label>
         <textarea name="warden_details" class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="wardenDetails" rows="4"></textarea>
     </div>
 

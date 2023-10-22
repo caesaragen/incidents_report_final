@@ -16,8 +16,12 @@ class PropertyDamage extends Model
         'details_of_incident',  'designation', 'insideOrOutsidePA'
     ];
 
-  public function claimant()
-  {
-      return $this->belongsTo(Claimant::class);
-  }
+    /**
+     * Summary of claimant
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function claimant()
+    {
+        return $this->belongsTo(Claimant::class);
+    }
 }
