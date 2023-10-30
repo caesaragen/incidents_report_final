@@ -495,11 +495,18 @@ class IncidentAssessmentController extends Controller
     public function showSingleClaim(Request $request, $claim_id)
     {
         $cropDestruction = CropDestruction::where('id', $claim_id)->first();
-        $cropDestruction_id = $cropDestruction->id;
-        $attachments = CropDamageAttachment::where('crops_destruction_id', $cropDestruction_id)->get();
+        // $cropDestruction_id = $cropDestruction->id;
+        // $attachments = CropDamageAttachment::where('crops_destruction_id', $cropDestruction_id)->get();
         // dd($attachments);
+        if($cropDestruction) {
+            $cropDestruction_id = $cropDestruction->id;
+            $attachments = CropDamageAttachment::where('crops_destruction_id', $cropDestruction_id)->get();
+        } else {
+            $attachments = collect(); // Return an empty collection if $cropDestruction is null
+        }
+        
         if ($request->has('download')) {
-            $pdf = Pdf::loadView('components.crop-report', compact('cropDestruction'));
+            $pdf = Pdf::loadView('components.crop-report', compact('cropDestruction', 'attachments'));
             
             return $pdf->download('crop_destruction_claim_' . $claim_id . '.pdf');
         }
@@ -507,19 +514,41 @@ class IncidentAssessmentController extends Controller
         return view('compensations.crop-damage', compact('cropDestruction', 'cropDestruction_id', 'attachments'));
     }
 
-    public function showMortality($claim_id)
+    /**
+     * Summary of showMortality
+     *
+     * @param  mixed $claim_id
+     * @return mixed
+     */
+    public function showMortality(Request $request, $claim_id)
     {
         $humanDeath = HumanDeath::where('id', $claim_id)->first();
         $human_death_id = $humanDeath->id;
         $attachments = MortalityAttachment::where('human_deaths_id', $human_death_id)->get();
+        if ($request->has('download')) {
+            $pdf = Pdf::loadView('components.mortality-report', compact('humanDeath', 'attachments'));
+            
+            return $pdf->download('mortality_claim_' . $claim_id . '.pdf');
+        }
         return view('compensations.mortality', compact('humanDeath', 'human_death_id', 'attachments'));
     }
-
-    public function showProperty($claim_id)
+    
+    /**
+     * Summary of showMortality
+     *
+     * @param  mixed $claim_id
+     * @return mixed
+     */
+    public function showProperty(Request $request, $claim_id)
     {
         $propertyDamage = PropertyDamage::where('id', $claim_id)->first();
         $property_damages_id = $propertyDamage->id;
         $attachments = DestructionAttachment::where('property_damages_id', $property_damages_id)->get();
+        if ($request->has('download')) {
+            $pdf = Pdf::loadView('components.damage-report', compact('propertyDamage', 'attachments'));
+            
+            return $pdf->download('property_claim_' . $claim_id . '.pdf');
+        }
         return view('compensations.property-damage', compact('propertyDamage', 'property_damages_id', 'attachments'));
     }
 

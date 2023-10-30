@@ -3,196 +3,199 @@
      <!-- Letterhead -->
     {{-- <link rel="stylesheet" href="{{ asset('pdf.css') }}" type="text/css">  --}}
 
-     <div class="text-center mb-6">
-         <img src="{{ asset('logo_colored.png') }}" alt="App Logo" class="mx-auto w-32 h-32">
-         <h1 class="text-blueGray-700 text-2xl font-bold my-4">Crop Destruction Claim Summary</h1>
-     </div>
+    <div style="text-align: center; margin-bottom: 1.5rem;">
+        <img src="{{ asset('logo_colored.png') }}" alt="App Logo" style="margin: auto; width: 8rem; height: 8rem;">
+        <h1 style="color: #4a5568; font-size: 1.5rem; font-weight: 700; margin-top: 1rem; margin-bottom: 1rem;">Crop Destruction Claim Summary</h1>
+    </div>
 
      <!-- Personal Details -->
-     <div class="mb-4">
-         <label class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
-         <input type="text" readonly value="{{ $cropDestruction->claimant->name }}"
-             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-     </div>
-     <div class="flex mb-4">
-         <div class="w-1/2 mr-2">
-             <label class="block text-gray-700 text-sm font-bold mb-2">Sex:</label>
-             <input type="text" readonly value="{{ $cropDestruction->claimant->sex }}"
-                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-         </div>
+     <div style="margin-bottom: 1.5rem;">
+        <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Name:</label>
+        <input type="text" readonly value="{{ $cropDestruction->claimant->name }}" 
+            style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+    </div>
+    <div style="display: flex; margin-bottom: 1.5rem;">
+        <div style="width: 50%; margin-right: 0.5rem;">
+            <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Sex:</label>
+            <input type="text" readonly value="{{ $cropDestruction->claimant->sex }}" 
+                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+        </div>
+        <div style="width: 50%; margin-left: 0.5rem;">
+            <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Age:</label>
+            <input type="text" readonly value="{{ $cropDestruction->claimant->age }}" 
+                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+        </div>
+    </div>
+    
+    <div style="display: flex; margin-bottom: 1.5rem;">
+        <!-- Present Address -->
+        <div style="width: 50%; margin-right: 0.5rem;">
+            <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Present Address:</label>
+            <input type="text" readonly value="{{ $cropDestruction->claimant->address }}" 
+                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+        </div>
+        
+        <!-- Constituency -->
+        <div style="width: 50%; margin-left: 0.5rem;">
+            <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Constituency:</label>
+            <input type="text" readonly value="{{ $cropDestruction->claimant->constituency }}" 
+                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+        </div>
+    
+        <!-- Email -->
+        <div style="width: 50%; margin-left: 0.5rem;">
+            <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Email:</label>
+            <input type="text" readonly value="{{ $cropDestruction->claimant->email }}" 
+                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+        </div>
+    
+        <!-- Telephone -->
+        <div style="width: 50%; margin-left: 0.5rem;">
+            <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Telephone:</label>
+            <input type="text" readonly value="{{ $cropDestruction->claimant->tel_no }}" 
+                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+        </div>
+    </div>
+    
 
-         <div class="w-1/2 ml-2">
-             <label class="block text-gray-700 text-sm font-bold mb-2">Age:</label>
-             <input type="text" readonly value="{{ $cropDestruction->claimant->age }}"
-                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-         </div>
-
-     </div>
-     <div class="flex mb-4">
-         <div class="w-1/2 mr-2">
-             <label class="block text-gray-700 text-sm font-bold mb-2">Present Address:</label>
-             <input type="text" readonly value="{{ $cropDestruction->claimant->address }}"
-                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-         </div>
-
-         <div class="w-1/2 ml-2">
-             <label class="block text-gray-700 text-sm font-bold mb-2">Constituency:</label>
-             <input type="text" readonly value="{{ $cropDestruction->claimant->constituency }}"
-                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-         </div>
-         <div class="w-1/2 ml-2">
-             <label class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
-             <input type="text" readonly value="{{ $cropDestruction->claimant->email }}"
-                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-         </div>
-
-         <div class="w-1/2 ml-2">
-             <label class="block text-gray-700 text-sm font-bold mb-2">Telephone:</label>
-             <input type="text" readonly value="{{ $cropDestruction->claimant->tel_no }}"
-                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-         </div>
-     </div>
-
-     <div class="flex mb-4">
-         <div class="w-1/2 ml-2">
-             <label class="block text-gray-700 text-sm font-bold mb-2">County:</label>
-             <input type="text" readonly value="{{ $cropDestruction->claimant->county }}"
-                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-         </div>
-         <div class="w-1/2 ml-2">
-             <label class="block text-gray-700 text-sm font-bold mb-2">Sub County:</label>
-             <input type="text" readonly value="{{ $cropDestruction->claimant->sub_county }}"
-                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-         </div>
-         <div class="w-1/2 ml-2">
-             <label class="block text-gray-700 text-sm font-bold mb-2">Location:</label>
-             <input type="text" readonly value="{{ $cropDestruction->claimant->location }}"
-                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-         </div>
+    <div style="display: flex; margin-bottom: 1.5rem;">
+        <!-- County -->
+        <div style="width: 50%; margin-left: 0.5rem;">
+            <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">County:</label>
+            <input type="text" readonly value="{{ $cropDestruction->claimant->county }}" 
+                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+        </div>
+        
+        <!-- Sub County -->
+        <div style="width: 50%; margin-left: 0.5rem;">
+            <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Sub County:</label>
+            <input type="text" readonly value="{{ $cropDestruction->claimant->sub_county }}" 
+                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+        </div>
+    
+        <!-- Location -->
+        <div style="width: 50%; margin-left: 0.5rem;">
+            <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Location:</label>
+            <input type="text" readonly value="{{ $cropDestruction->claimant->location }}" 
+                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+        </div>
+    
+        <!-- Sub Location -->
+        <div style="width: 50%; margin-left: 0.5rem;">
+            <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Sub Location:</label>
+            <input type="text" readonly value="{{ $cropDestruction->claimant->sub_location }}" 
+                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+        </div>
+    </div>
+    
 
 
-         <div class="w-1/2 ml-2">
-             <label class="block text-gray-700 text-sm font-bold mb-2">Sub Location:</label>
-             <input type="text" readonly value="{{ $cropDestruction->claimant->sub_location }}"
-                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-         </div>
+    
 
-     </div>
+    <div style="margin-top: 2.5rem;">
+        <h3 style="color: #4A5568; font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">Incident Details</h3>
+    
+        <div style="margin-bottom: 1rem;">
+            <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">1. Circumstances of Incident:</label>
+            <textarea readonly rows="3" 
+                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">{{ $cropDestruction->circumstances }}</textarea>
+        </div>
 
-     <!-- Incident Details -->
-     <div class="mt-10">
-         <h3 class="text-blueGray-600 text-lg font-semibold mb-4">Incident Details</h3>
-
-         <div class="mb-4">
-             <label class="block text-gray-700 text-sm font-bold mb-2">1. Circumstances of
-                 Incident:</label>
-             <textarea readonly rows="3"
-                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{ $cropDestruction->circumstances }}</textarea>
-         </div>
-
-         <div class="mt-10">
-             <h3 class="text-blueGray-600 text-lg font-semibold mb-4">Incident Details</h3>
-
-             <div class="mb-4">
-                 <label class="block text-gray-700 text-sm font-bold mb-2">1. Circumstances of
-                     Incident:</label>
-                 <textarea readonly rows="3"
-                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{ $cropDestruction->circumstances }}</textarea>
-             </div>
-
-             <div class="mb-4">
-                 <label class="block text-gray-700 text-sm font-bold mb-2">2. Crop Name:</label>
+        <div style="margin-bottom: 1rem;">
+            <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">2. Crop Name:</label>
                  <input type="text" readonly value="{{ $cropDestruction->crop_name }}"
-                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                     style="box-shadow: 0 0 5px rgba(0,0,0,0.1); appearance: none; border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
              </div>
 
-             <div class="mb-4">
-                 <label class="block text-gray-700 text-sm font-bold mb-2">3. Animal Responsible:</label>
+             <div style="margin-bottom: 1rem;">
+                 <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">3. Animal Responsible:</label>
                  <input type="text" readonly value="{{ $cropDestruction->animal_responsible }}"
-                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                     style="box-shadow: 0 0 5px rgba(0,0,0,0.1); appearance: none; border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
              </div>
 
-             <div class="mb-4">
-                 <label class="block text-gray-700 text-sm font-bold mb-2">4. Land Ownership
+             <div style="margin-bottom: 1rem;">
+                 <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">4. Land Ownership
                      Status:</label>
                  <input type="text" readonly value="{{ $cropDestruction->land_ownership_status }}"
-                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                     style="box-shadow: 0 0 5px rgba(0,0,0,0.1); appearance: none; border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
              </div>
 
-             <div class="mb-4">
-                 <label class="block text-gray-700 text-sm font-bold mb-2">5. Approximate Acreage
+             <div style="margin-bottom: 1rem;">
+                 <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">5. Approximate Acreage
                      Destroyed:</label>
                  <input type="text" readonly value="{{ $cropDestruction->acreage }}"
-                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                     style="box-shadow: 0 0 5px rgba(0,0,0,0.1); appearance: none; border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
              </div>
 
-             <div class="mb-4">
-                 <label class="block text-gray-700 text-sm font-bold mb-2">6. Stage of Growth:</label>
+             <div style="margin-bottom: 1rem;">
+                 <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">6. Stage of Growth:</label>
                  <input type="text" readonly value="{{ $cropDestruction->stage }}"
-                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                     style="box-shadow: 0 0 5px rgba(0,0,0,0.1); appearance: none; border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
              </div>
 
-             <div class="mb-4">
-                 <label class="block text-gray-700 text-sm font-bold mb-2">7. Estimated Value:</label>
+             <div style="margin-bottom: 1rem;">
+                 <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">7. Estimated Value:</label>
                  <input type="text" readonly value="KSH {{ $cropDestruction->value }}"
-                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                     style="box-shadow: 0 0 5px rgba(0,0,0,0.1); appearance: none; border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
              </div>
 
-             <div class="mb-4">
-                 <label class="block text-gray-700 text-sm font-bold mb-2">8. Measures in Place:</label>
+             <div style="margin-bottom: 1rem;">
+                 <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">8. Measures in Place:</label>
                  <textarea readonly rows="3"
-                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{ $cropDestruction->measures }}</textarea>
+                     style="box-shadow: 0 0 5px rgba(0,0,0,0.1); appearance: none; border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">{{ $cropDestruction->measures }}</textarea>
              </div>
 
-             <div class="mb-4">
-                 <label class="block text-gray-700 text-sm font-bold mb-2">9. Place of Incident:</label>
+             <div style="margin-bottom: 1rem;">
+                 <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">9. Place of Incident:</label>
                  <input type="text" readonly value="{{ $cropDestruction->place }}"
-                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                     style="box-shadow: 0 0 5px rgba(0,0,0,0.1); appearance: none; border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
              </div>
 
-             <div class="mb-4">
-                 <label class="block text-gray-700 text-sm font-bold mb-2">10. Location Status:</label>
+             <div style="margin-bottom: 1rem;">
+                 <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">10. Location Status:</label>
                  <input type="text" readonly value="{{ $cropDestruction->location_status }}"
-                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                     style="box-shadow: 0 0 5px rgba(0,0,0,0.1); appearance: none; border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
              </div>
 
-             <div class="mb-4">
-                 <label class="block text-gray-700 text-sm font-bold mb-2">11. Date and Time of
+             <div style="margin-bottom: 1rem;">
+                 <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">11. Date and Time of
                      Incident:</label>
-                 <div class="flex space-x-4">
-                     <input type="date" readonly value="{{ $cropDestruction->date }}"
-                         class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                     <input type="time" readonly value="{{ $cropDestruction->time }}"
-                         class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                 </div>
-             </div>
+                     <div style="display: flex; justify-content: normal;">
+                        <input type="date" readonly value="{{ $cropDestruction->date }}"
+                               style="box-shadow: 0 0 5px rgba(0,0,0,0.1); appearance: none; border: 1px solid #E2E8F0; border-radius: 0.375rem; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none; margin-right: 16px;">
+                        <input type="time" readonly value="{{ $cropDestruction->time }}"
+                               style="box-shadow: 0 0 5px rgba(0,0,0,0.1); appearance: none; border: 1px solid #E2E8F0; border-radius: 0.375rem; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+                    </div>
+                    
                        <!-- Attachments Section -->
-                       <div class="mt-10 border-t border-blueGray-200 pt-6">
-                        <h3 class="text-blueGray-600 text-lg font-semibold mb-4">Attachments</h3>
-                        <ul>
+                       <div style="margin-top: 2.5rem; border-top: 1px solid #B0BEC5; padding-top: 1.5rem;">
+                        <h3 style="color: #546E7A; font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">Attachments</h3>
+                        <ul style="margin: 0; padding-left: 1rem;">
                             @foreach ($attachments as $attachment)
-                                <li class="mb-2">
-                                    <a href="{{ asset('storage/' . $attachment->file_path) }}" target="_blank">
+                                <li style="margin-bottom: 0.5rem;">
+                                    <a href="{{ asset('storage/' . $attachment->file_path) }}" target="_blank" style="color: inherit; text-decoration: none;">
                                         {{ $attachment->type }}
                                     </a>
                                 </li>
                             @endforeach
                         </ul>
                     </div>
+                    
          </div>
 
 
      </div>
 
      <!-- Verification Details -->
-     <div class="mt-10 border-t border-blueGray-200 pt-6">
-         <h3 class="text-blueGray-600 text-lg font-semibold mb-4">Verification Details</h3>
-         <p>Verified by: {{ $cropDestruction->verified_by }}</p>
-         <p>EST. No: {{ $cropDestruction->est_no }}</p>
-         <p>Designation: {{ $cropDestruction->designation }}</p>
-         <div class="flex items-center mt-6">
-             {{-- <img src="{{ $cropDestruction->signature }}" alt="Officer Signature" class="w-32 h-12 mr-4"> --}}
-             <p class="text-xs text-gray-500">Officer's Signature</p>
-         </div>
-     </div>
+     <div style="margin-top: 40px; border-top: 1px solid #CBD5E1; padding-top: 24px;">
+        <h3 style="color: #374151; font-size: 1.125rem; font-weight: 600; margin-bottom: 16px;">Verification Details</h3>
+        <p style="margin-bottom: 4px;">Verified by: {{ $cropDestruction->verified_by }}</p>
+        <p style="margin-bottom: 4px;">EST. No: {{ $cropDestruction->est_no }}</p>
+        <p style="margin-bottom: 4px;">Designation: {{ $cropDestruction->designation }}</p>
+        <div style="display: flex; align-items: center; margin-top: 24px;">
+            <!-- <img src="{{ $cropDestruction->signature }}" alt="Officer Signature" style="width: 128px; height: 48px; margin-right: 16px;"> -->
+            <p style="font-size: 0.75rem; color: #6B7280;">Officer's Signature</p>
+        </div>
+    </div>
+    
  </div>
