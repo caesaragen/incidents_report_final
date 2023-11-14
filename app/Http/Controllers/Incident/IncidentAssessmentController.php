@@ -529,14 +529,20 @@ class IncidentAssessmentController extends Controller
     public function showMortality(Request $request, $claim_id)
     {
         $humanDeath = HumanDeath::where('id', $claim_id)->first();
+        $incident_assessment = $humanDeath->claimant->incidentAssessment;
+        $claimant_id = $humanDeath->claimant_id;
+        $chiefs_comments = ChiefComment::where('claimant_id', $claimant_id)->first();
         $human_death_id = $humanDeath->id;
+        $next_of_kin = NextOfKin::where('claimant_id', $claimant_id)->first();
         $attachments = MortalityAttachment::where('human_deaths_id', $human_death_id)->get();
+        $ob = $incident_assessment->incident->ob;
+        // dd($ob);
         if ($request->has('download')) {
-            $pdf = Pdf::loadView('components.mortality-report', compact('humanDeath', 'attachments'));
+            $pdf = Pdf::loadView('components.mortality-report', compact('humanDeath', 'attachments', 'chiefs_comments', 'next_of_kin', 'ob'));
             
             return $pdf->download('mortality_claim_' . $claim_id . '.pdf');
         }
-        return view('compensations.mortality', compact('humanDeath', 'human_death_id', 'attachments'));
+        return view('compensations.mortality', compact('humanDeath', 'human_death_id', 'attachments', 'chiefs_comments', 'next_of_kin', 'ob'));
     }
     
     /**
@@ -548,14 +554,20 @@ class IncidentAssessmentController extends Controller
     public function showProperty(Request $request, $claim_id)
     {
         $propertyDamage = PropertyDamage::where('id', $claim_id)->first();
+        $incident_assessment = $propertyDamage->claimant->incidentAssessment;
+        $claimant_id = $propertyDamage->claimant_id;
+        $chiefs_comments = ChiefComment::where('claimant_id', $claimant_id)->first();
+        $next_of_kin = NextOfKin::where('claimant_id', $claimant_id)->first();
         $property_damages_id = $propertyDamage->id;
+        $ob = $incident_assessment->incident->ob;
         $attachments = DestructionAttachment::where('property_damages_id', $property_damages_id)->get();
+        // dd($ob);
         if ($request->has('download')) {
-            $pdf = Pdf::loadView('components.damage-report', compact('propertyDamage', 'attachments'));
+            $pdf = Pdf::loadView('components.damage-report', compact('propertyDamage', 'attachments', 'chiefs_comments', 'next_of_kin', 'ob'));
             
             return $pdf->download('property_claim_' . $claim_id . '.pdf');
         }
-        return view('compensations.property-damage', compact('propertyDamage', 'property_damages_id', 'attachments'));
+        return view('compensations.property-damage', compact('propertyDamage', 'property_damages_id', 'attachments', 'chiefs_comments', 'next_of_kin', 'ob'));
     }
 
     public function areaWarden($claim_id)
