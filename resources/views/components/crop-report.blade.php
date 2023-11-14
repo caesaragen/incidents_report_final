@@ -16,12 +16,12 @@
             style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
     </div>
     <div style="display: flex; margin-bottom: 1.5rem; align-items:center;justify-content:space-evenly;">
-        <div style="width: 25%; margin-right: 0.5rem;">
+        <div style="width: 50%; margin-right: 0.5rem;">
             <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Sex:</label>
             <input type="text" readonly value="{{ $cropDestruction->claimant->sex }}" 
                 style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem;padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
         </div>
-        <div style="width: 25%; margin-left: 0.5rem;">
+        <div style="width: 50%; margin-left: 0.5rem;">
             <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Age:</label>
             <input type="text" readonly value="{{ $cropDestruction->claimant->age }}" 
                 style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem;  padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
