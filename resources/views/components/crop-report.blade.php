@@ -9,38 +9,41 @@
     </div>
 
      <!-- Personal Details -->
+     <h3 style="color: #4A5568; font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">Personal Details</h3>
      <div style="margin-bottom: 1.5rem;">
         <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Name:</label>
         <input type="text" readonly value="{{ $cropDestruction->claimant->name }}" 
             style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
     </div>
-    <div style="display: flex; margin-bottom: 1.5rem;">
-        <div style="width: 50%; margin-right: 0.5rem;">
+    <div style="display: flex; margin-bottom: 1.5rem; align-items:center;justify-content:space-evenly;">
+        <div style="width: 25%; margin-right: 0.5rem;">
             <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Sex:</label>
             <input type="text" readonly value="{{ $cropDestruction->claimant->sex }}" 
-                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem;padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
         </div>
-        <div style="width: 50%; margin-left: 0.5rem;">
+        <div style="width: 25%; margin-left: 0.5rem;">
             <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Age:</label>
             <input type="text" readonly value="{{ $cropDestruction->claimant->age }}" 
-                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem;  padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
         </div>
     </div>
-    
-    <div style="display: flex; margin-bottom: 1.5rem;">
-        <!-- Present Address -->
-        <div style="width: 50%; margin-right: 0.5rem;">
-            <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Present Address:</label>
-            <input type="text" readonly value="{{ $cropDestruction->claimant->address }}" 
-                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
-        </div>
-        
-        <!-- Constituency -->
-        <div style="width: 50%; margin-left: 0.5rem;">
-            <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Constituency:</label>
-            <input type="text" readonly value="{{ $cropDestruction->claimant->constituency }}" 
-                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
-        </div>
+    <div style="display: flex; margin-bottom: 1.5rem; align-items:center;justify-content:space-evenly;">
+            <!-- Present Address -->
+            <div style="width: 50%; margin-right: 0.5rem;">
+                <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Present Address:</label>
+                <input type="text" readonly value="{{ $cropDestruction->claimant->address }}" 
+                    style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+            </div>
+            
+            <!-- Constituency -->
+            <div style="width: 50%; margin-left: 0.5rem;">
+                <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Constituency:</label>
+                <input type="text" readonly value="{{ $cropDestruction->claimant->constituency }}" 
+                    style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+            </div>
+    </div>
+    <div style="display: flex; margin-bottom: 1.5rem; align-items:center;justify-content:space-evenly;">
+
     
         <!-- Email -->
         <div style="width: 50%; margin-left: 0.5rem;">
@@ -89,9 +92,83 @@
     </div>
     
 
-
+    </div>
+    <h3 style="color: #4A5568; font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">Next of Kin Details</h3>
+    <div style="display: flex; margin-bottom: 1.5rem;">
+    <div style="width: 50%; margin-right: 0.5rem;">
+        <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Next of Kin Name:</label>
+        <input type="text" readonly value="{{ $next_of_kin->name }}" 
+            style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+    </div>
     
+    <!-- Constituency -->
+    <div style="width: 50%; margin-left: 0.5rem;">
+        <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Next of Kin Address:</label>
+        <input type="text" readonly value="{{ $next_of_kin->address }}" 
+            style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+    </div>
 
+    <!-- Email -->
+    <div style="width: 50%; margin-left: 0.5rem;">
+        <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Email:</label>
+        <input type="text" readonly value="{{ $next_of_kin->email }}" 
+            style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+    </div>
+
+    <!-- Telephone -->
+    <div style="width: 50%; margin-left: 0.5rem;">
+        <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Telephone:</label>
+        <input type="text" readonly value="{{ $next_of_kin->tel_no }}" 
+            style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+    </div>
+    </div>
+    <div style="display: flex; margin-bottom: 1.5rem;">
+        <!-- County -->
+        <div style="width: 50%; margin-left: 0.5rem;">
+            <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">County:</label>
+            <input type="text" readonly value="{{ $next_of_kin->county }}" 
+                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+        </div>
+        
+        <!-- Sub County -->
+        <div style="width: 50%; margin-left: 0.5rem;">
+            <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Sub County:</label>
+            <input type="text" readonly value="{{ $next_of_kin->sub_county }}" 
+                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+        </div>
+    
+        <!-- Location -->
+        <div style="width: 50%; margin-left: 0.5rem;">
+            <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Location:</label>
+            <input type="text" readonly value="{{ $next_of_kin->location }}" 
+                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+        </div>
+    
+        <!-- Sub Location -->
+        <div style="width: 50%; margin-left: 0.5rem;">
+            <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Sub Location:</label>
+            <input type="text" readonly value="{{ $next_of_kin->sub_location }}" 
+                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+        </div>
+    </div>
+    <h3 style="color: #4A5568; font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">Chief's Comments</h3>
+    <div style="display: flex; margin-bottom: 1.5rem;">
+        <div style="width: 50%; margin-right: 0.5rem;">
+            <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Chief Name:</label>
+            <input type="text" readonly value="{{ $chiefs_comments->chief_name }}" 
+                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+        </div>
+        
+        <!-- Constituency -->
+        <div style="width: 50%; margin-left: 0.5rem;">
+            <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Chief Phone:</label>
+            <input type="text" readonly value="{{ $chiefs_comments->chief_phone }}" 
+                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
+        </div>
+    
+    </div>
+    <textarea readonly rows="3" 
+    style="box-shadow: 0 0 5px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; border-radius: 0.375rem; width: 100%; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">{{ $chiefs_comments->chief_comments }}</textarea>
     <div style="margin-top: 2.5rem;">
         <h3 style="color: #4A5568; font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">Incident Details</h3>
     
@@ -161,9 +238,9 @@
                  <label style="display: block; color: #4A5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">11. Date and Time of
                      Incident:</label>
                      <div style="display: flex; justify-content: normal;">
-                        <input type="date" readonly value="{{ $cropDestruction->date }}"
+                        <input type="text" readonly value="{{ $cropDestruction->date }}"
                                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); appearance: none; border: 1px solid #E2E8F0; border-radius: 0.375rem; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none; margin-right: 16px;">
-                        <input type="time" readonly value="{{ $cropDestruction->time }}"
+                        <input type="text" readonly value="{{ $cropDestruction->time }}"
                                style="box-shadow: 0 0 5px rgba(0,0,0,0.1); appearance: none; border: 1px solid #E2E8F0; border-radius: 0.375rem; padding: 0.5rem 1rem; color: #4A5568; line-height: 1.5; outline: none;">
                     </div>
                     

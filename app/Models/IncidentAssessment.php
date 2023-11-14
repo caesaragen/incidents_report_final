@@ -25,10 +25,21 @@ class IncidentAssessment extends Model
 
     /**
      * Summary of incident
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function incident()
     {
         return $this->belongsTo(Incident::class);
     }
+
+    /**
+     * Summary of chiefComments
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function chiefComments()
+    {
+        return $this->hasMany(ChiefComment::class);
+    }
+
 }

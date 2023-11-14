@@ -495,6 +495,12 @@ class IncidentAssessmentController extends Controller
     public function showSingleClaim(Request $request, $claim_id)
     {
         $cropDestruction = CropDestruction::where('id', $claim_id)->first();
+        $incident_assessment = $cropDestruction->claimant->incidentAssessment;
+        $claimant_id = $cropDestruction->claimant_id;
+        $chiefs_comments = ChiefComment::where('claimant_id', $claimant_id)->first();
+        $next_of_kin = NextOfKin::where('claimant_id', $claimant_id)->first();
+        $ob = $incident_assessment->incident->ob;
+        // dd($chiefs_comments);
         // $cropDestruction_id = $cropDestruction->id;
         // $attachments = CropDamageAttachment::where('crops_destruction_id', $cropDestruction_id)->get();
         // dd($attachments);
@@ -506,12 +512,12 @@ class IncidentAssessmentController extends Controller
         }
         
         if ($request->has('download')) {
-            $pdf = Pdf::loadView('components.crop-report', compact('cropDestruction', 'attachments'));
+            $pdf = Pdf::loadView('components.crop-report', compact('cropDestruction', 'attachments', 'chiefs_comments', 'next_of_kin', 'ob'));
             
             return $pdf->download('crop_destruction_claim_' . $claim_id . '.pdf');
         }
 
-        return view('compensations.crop-damage', compact('cropDestruction', 'cropDestruction_id', 'attachments'));
+        return view('compensations.crop-damage', compact('cropDestruction', 'cropDestruction_id', 'attachments', 'chiefs_comments', 'next_of_kin', 'ob'));
     }
 
     /**

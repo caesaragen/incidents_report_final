@@ -42,4 +42,13 @@ class Claimant extends Model
          return $this->belongsTo(Incident::class);
      }
 
+     /**
+      * Summary of incidentAssessment
+      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+      */
+     public function incidentAssessment()
+     {
+         return $this->belongsTo(IncidentAssessment::class);
+     }
+
 }
