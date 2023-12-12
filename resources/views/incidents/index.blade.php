@@ -21,7 +21,7 @@
                             <thead>
                                 <tr>
                                     <th>Date</th>
-                                    <th>OB Number</th>
+                                    <th>Incident Number</th>
                                     <th>Reported by</th>
                                     <th>Incident Type</th>
                                     <th>Animal Responsible</th>

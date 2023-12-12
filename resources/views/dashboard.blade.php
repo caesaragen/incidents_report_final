@@ -11,19 +11,19 @@
         <div class=" mx-auto sm:px-6 lg:px-8">
             <x-action-button class="p-2 m-2" x-data=""
                 x-on:click.prevent="$dispatch('open-modal', 'ob-form-modal')" data-modal-toggle="ob-form-modal">
-                {{ __('Create New OB') }}</x-action-button>
-                <a href="{{ route('claims.index') }}" target="_blank"
+                {{ __('Incident reporting') }}</x-action-button>
+                <a href="{{ route('compensations.index') }}" target="_blank"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-2 rounded">
-                Crop Damage Claims
+                View Assessed Incidents
             </a>
-            <a href="{{ route('properties.index') }}" target="_blank"
+            {{-- <a href="{{ route('properties.index') }}" target="_blank"
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
             Property Damage Claims
         </a>
         <a href="{{ route('mortality.index') }}" target="_blank"
         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
          Mortality Claims
-    </a>
+    </a> --}}
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @if (session('success'))
@@ -36,7 +36,7 @@
                             <thead>
                                 <tr>
                                     <th>Date</th>
-                                    <th>OB Number</th>
+                                    <th>Incident Number</th>
                                     <th>Reported by</th>
                                     <th>Incident Type</th>
                                     <th>ID Number</th>

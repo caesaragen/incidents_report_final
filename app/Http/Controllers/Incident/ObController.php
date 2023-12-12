@@ -77,7 +77,7 @@ class ObController extends Controller
         $ob->save();
 
         return redirect()->route('dashboard')
-            ->with('success', 'Observation created successfully.');
+            ->with('success', 'Incident created successfully.');
     }
 
     /**

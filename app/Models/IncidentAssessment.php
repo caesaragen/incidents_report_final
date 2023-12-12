@@ -17,6 +17,10 @@ class IncidentAssessment extends Model
         'monitoring_and_survey',
         'actions_taken',
         'evidence_file',
+        'ob_number',
+        'time_of_incident',
+        'latitude',
+        'longitude',
     ];
 
     protected $casts = [

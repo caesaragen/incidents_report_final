@@ -3,12 +3,12 @@
         @csrf
         <div class="flex flex-col">
             <h2 class="text-lg font-medium text-gray-900 dark:text-white">
-                {{ __('Fill the fields below to record an OB') }}
+                {{ __('Fill the fields below to record an Incident') }}
             </h2>
             <div class="flex flex-wrap -mx-3 mb-6 gap-2 justify-between">
             <div class="mb-6 mx-2">
-                <x-input-label for="ob_number" class="mb-2">{{ __('OB Number') }}</x-input-label>
-                <x-text-input id="ob_number" name="ob_number" type="text" placeholder="OB Number" />
+                <x-input-label for="ob_number" class="mb-2">{{ __('Incident Number') }}</x-input-label>
+                <x-text-input id="ob_number" name="ob_number" type="text" placeholder="Incident Number" />
                 <x-input-error :messages="$errors->get('ob_number')" class="mt-2" />
             </div>
     

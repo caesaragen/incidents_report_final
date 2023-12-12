@@ -44,25 +44,27 @@ Route::middleware('auth')->group(
         Route::get('/incidents/report', [IncidentsController::class, 'incidentAssessment'])->name('incidents.report');
         Route::post('/incidents/assessment', [IncidentAssessmentController::class, 'create'])->name('incidents.assessment.store');
         Route::get('/assessment/all', [IncidentAssessmentController::class, 'index'])->name('compensations.index');
+        Route::get('/warden/index/{incident_assessment_id}', [IncidentAssessmentController::class, 'warden'])->name('warden.index');
+
         // Route::get('/compensation/create', [IncidentAssessmentController::class, 'claim'])->name('compensations.create');
         // Route::get('/compensation/create/{assessment_id}', [IncidentAssessmentController::class, 'claim'])->name('compensations.create');
-        Route::get('/compensation/create/{incident_assessment_id}', [IncidentAssessmentController::class, 'claim'])->name('compensations.create');
-        Route::post('/claimants/store', [IncidentAssessmentController::class, 'saveClaimant'])->name('claimants.store');
-        Route::post('/kin/store', [IncidentAssessmentController::class, 'createKin'])->name('kin.store');
-        Route::post('/comments/store', [IncidentAssessmentController::class, 'saveChiefComments'])->name('comments.store');
-        Route::post('crops/store', [IncidentAssessmentController::class, 'saveCropsDestruction'])->name('crops.store');
-        Route::post('properties/store', [IncidentAssessmentController::class, 'savePropertyDamage'])->name('properties.store');
-        Route::post('human/deaths/store', [IncidentAssessmentController::class, 'saveHumanDeath'])->name('human.deaths.store');
-        Route::get('/claims/all', [IncidentAssessmentController::class, 'showCropClaims'])->name('claims.index');
-        Route::get('/claims/properties', [IncidentAssessmentController::class, 'showPropertyClaims'])->name('properties.index');
-        Route::get('/claims/human-deaths', [IncidentAssessmentController::class, 'showHumanDeathClaims'])->name('mortality.index');
-        Route::get('/claims/crop-damage/{claim_id}',  [IncidentAssessmentController::class, 'showSingleClaim'])->name('claims.crop-damage');
-        Route::get('area-warden/claim/{claim-id}', [IncidentAssessmentController::class, 'areaWarden'])->name('area-warden.report');
-        Route::get('/claims/mortality/{claim_id}',  [IncidentAssessmentController::class, 'showMortality'])->name('claims.mortality');
-        Route::get('/claims/property/{claim_id}',  [IncidentAssessmentController::class, 'showProperty'])->name('claims.property');
-        Route::post('crops/attachments/store', [IncidentAssessmentController::class, 'storeCropAttachments'])->name('crop.attachments.store');
-        Route::post('damage/attachments/store', [IncidentAssessmentController::class, 'storeDamageAttachments'])->name('damage.attachments.store');
-        Route::post('mortality/attachments/store', [IncidentAssessmentController::class, 'storeMortalityAttachments'])->name('mortality.attachments.store');
+        // Route::get('/compensation/create/{incident_assessment_id}', [IncidentAssessmentController::class, 'claim'])->name('compensations.create');
+        // Route::post('/claimants/store', [IncidentAssessmentController::class, 'saveClaimant'])->name('claimants.store');
+        // Route::post('/kin/store', [IncidentAssessmentController::class, 'createKin'])->name('kin.store');
+        // Route::post('/comments/store', [IncidentAssessmentController::class, 'saveChiefComments'])->name('comments.store');
+        // Route::post('crops/store', [IncidentAssessmentController::class, 'saveCropsDestruction'])->name('crops.store');
+        // Route::post('properties/store', [IncidentAssessmentController::class, 'savePropertyDamage'])->name('properties.store');
+        // Route::post('human/deaths/store', [IncidentAssessmentController::class, 'saveHumanDeath'])->name('human.deaths.store');
+        // Route::get('/claims/all', [IncidentAssessmentController::class, 'showCropClaims'])->name('claims.index');
+        // Route::get('/claims/properties', [IncidentAssessmentController::class, 'showPropertyClaims'])->name('properties.index');
+        // Route::get('/claims/human-deaths', [IncidentAssessmentController::class, 'showHumanDeathClaims'])->name('mortality.index');
+        // Route::get('/claims/crop-damage/{claim_id}',  [IncidentAssessmentController::class, 'showSingleClaim'])->name('claims.crop-damage');
+        // Route::get('area-warden/claim/{claim-id}', [IncidentAssessmentController::class, 'areaWarden'])->name('area-warden.report');
+        // Route::get('/claims/mortality/{claim_id}',  [IncidentAssessmentController::class, 'showMortality'])->name('claims.mortality');
+        // Route::get('/claims/property/{claim_id}',  [IncidentAssessmentController::class, 'showProperty'])->name('claims.property');
+        // Route::post('crops/attachments/store', [IncidentAssessmentController::class, 'storeCropAttachments'])->name('crop.attachments.store');
+        // Route::post('damage/attachments/store', [IncidentAssessmentController::class, 'storeDamageAttachments'])->name('damage.attachments.store');
+        // Route::post('mortality/attachments/store', [IncidentAssessmentController::class, 'storeMortalityAttachments'])->name('mortality.attachments.store');
     }
 );
 

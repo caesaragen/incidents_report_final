@@ -67,7 +67,7 @@
                                             <div class="relative w-full mb-3">
                                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                                 htmlfor="grid-password">
-                                                OB Number
+                                                Incident Number
                                             </label>
                                             <input type="text"
                                             class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -99,11 +99,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit"id="ad"
-    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-<i class="fas fa-plus"></i>
-Add Incident
-</button>
+                                    {{-- <button type="submit"id="ad"
+                                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                        <i class="fas fa-plus"></i>
+                                        Add Incident
+                                    </button> --}}
 {{-- <div id="incident-forms"></div> --}}
 
 <hr class="mt-6 border-b-1 border-blueGray-300">

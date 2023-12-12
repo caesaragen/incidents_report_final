@@ -20,6 +20,7 @@
                             <thead>
                                 <tr>
                                     <th>Date Created</th>
+                                    <th>OB Number</th>
                                     <th>Incident Type</th>
                                     <th>Warden Dispatched</th>
                                     <th>Narrative</th>
@@ -48,6 +49,7 @@
             ajax: "{{ route('compensations.index') }}",
             columns: [
                 { data: 'created_at', name: 'created_at' },
+                { data: 'ob_number', name: 'ob_number' },
                 { data: 'incident_type', name: 'incident_type' },
                 { data: 'warden_dispatched', name: 'warden_dispatched' },
                 { data: 'narrative', name: 'narrative' },
@@ -59,7 +61,7 @@
                     orderable: false,
                     searchable: false,
                     render: function(data, type, row) {
-                        return '<a href="{{ route('compensations.create', ['incident_assessment_id' => 'PLACEHOLDER']) }}" target="_blank" class="edit btn btn-success btn-sm">Launch Claim</a>'.replace('PLACEHOLDER', row.id);
+                        return '<a href="{{ route('warden.index', ['incident_assessment_id' => 'PLACEHOLDER']) }}" target="_blank" class="edit btn btn-success btn-sm">View Incident</a>'.replace('PLACEHOLDER', row.id);
                     }
                 }
             ]
