@@ -45,12 +45,12 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'url' => 'https://phplaravel-1194781-4211054.cloudwaysapps.com/',
+            'host' => 'https://phplaravel-1194781-4211054.cloudwaysapps.com/',
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'vnyvgdhzmu'),
-            'username' => env('DB_USERNAME', 'vnyvgdhzmu'),
-            'password' => env('DB_PASSWORD', 'WGjQZypD7D'),
+            'database' =>  'vnyvgdhzmu',
+            'username' => 'vnyvgdhzmu',
+            'password' =>  'WGjQZypD7D',
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
