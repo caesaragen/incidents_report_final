@@ -182,12 +182,12 @@
         <div class="mt-10 flex justify-center">
             <a href="{{ route('download.incident.report', ['incident_assessment_id' => $incidentAssessment->id]) }}"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Download Incident Report</a>
-                <div class="mt-10 flex justify-center">
+                {{-- <div class="mt-10 flex justify-center">
     
                     <a href="{{ route('claims.crop-damage', ['incident_assessment_id' => $incidentAssessment->id, 'download' => true]) }}"
                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Download
                         Report</a>
-            </div>
+            </div> --}}
         </div>
     </div>
 </x-app-layout>
