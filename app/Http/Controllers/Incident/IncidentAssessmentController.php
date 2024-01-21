@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Barryvdh\DomPDF\Facade\Pdf;
+// use Spatie\LaravelPdf\Facades\Pdf;
 
 class IncidentAssessmentController extends Controller
 {
@@ -101,13 +102,28 @@ class IncidentAssessmentController extends Controller
         return view('compensations.index')->with('success', 'Incident assessment recorded successfully.');
 
     }
-    public function warden($incident_assessment_id) 
+    public function warden(Request $request, $incident_assessment_id) 
     {
         $incidentAssessment = IncidentAssessment::where('id', $incident_assessment_id)->first();
         $incident = $incidentAssessment->incident;
         // dd($incidentAssessment);
+
         return view('warden.incident-report', compact('incident', 'incidentAssessment'));
 
+    }
+
+    public function downloadIncidentReport($incident_assessment_id)
+    {
+        $incidentAssessment = IncidentAssessment::where('id', $incident_assessment_id)->first();
+        $incident = $incidentAssessment->incident;
+
+        $pdf = PDF::loadView('components.warden-report', compact('incident', 'incidentAssessment'));
+    
+        // You can customize the filename if needed
+        $filename = 'incident_report_' . $incident_assessment_id . '.pdf';
+
+        // Download the PDF file
+        return $pdf->download($filename);
     }
     public function index(Request $request)
     {

@@ -45,6 +45,8 @@ Route::middleware('auth')->group(
         Route::post('/incidents/assessment', [IncidentAssessmentController::class, 'create'])->name('incidents.assessment.store');
         Route::get('/assessment/all', [IncidentAssessmentController::class, 'index'])->name('compensations.index');
         Route::get('/warden/index/{incident_assessment_id}', [IncidentAssessmentController::class, 'warden'])->name('warden.index');
+        Route::get('/download-incident-report/{incident_assessment_id}', [IncidentAssessmentController::class, 'downloadIncidentReport'])->name('download.incident.report');
+
 
         // Route::get('/compensation/create', [IncidentAssessmentController::class, 'claim'])->name('compensations.create');
         // Route::get('/compensation/create/{assessment_id}', [IncidentAssessmentController::class, 'claim'])->name('compensations.create');
