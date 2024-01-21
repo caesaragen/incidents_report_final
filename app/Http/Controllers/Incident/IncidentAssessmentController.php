@@ -107,7 +107,14 @@ class IncidentAssessmentController extends Controller
         $incidentAssessment = IncidentAssessment::where('id', $incident_assessment_id)->first();
         $incident = $incidentAssessment->incident;
         // dd($incidentAssessment);
+        if ($request->has('download')) {
+            $pdf = Pdf::loadView('components.warden-report', compact('incident', 'incidentAssessment'));
+            
+            $filename = 'incident_report_' . $incident_assessment_id . '.pdf';
 
+            // Download the PDF file
+            return $pdf->download($filename);
+        }
         return view('warden.incident-report', compact('incident', 'incidentAssessment'));
 
     }

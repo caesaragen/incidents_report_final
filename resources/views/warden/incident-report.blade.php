@@ -1,4 +1,4 @@
-<style>
+{{-- <style>
     .section {
         padding-top: 0.25rem;
         padding-bottom: 0.25rem;
@@ -167,7 +167,7 @@
     .float-right {
         float: right;
     }
-</style>
+</style> --}}
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-white dark:text-gray-200 leading-tight">
@@ -182,6 +182,12 @@
         <div class="mt-10 flex justify-center">
             <a href="{{ route('download.incident.report', ['incident_assessment_id' => $incidentAssessment->id]) }}"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Download Incident Report</a>
+                <div class="mt-10 flex justify-center">
+    
+                    <a href="{{ route('claims.crop-damage', ['incident_assessment_id' => $incidentAssessment->id, 'download' => true]) }}"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Download
+                        Report</a>
+            </div>
         </div>
     </div>
 </x-app-layout>
