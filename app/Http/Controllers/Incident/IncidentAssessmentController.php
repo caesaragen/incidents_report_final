@@ -45,6 +45,17 @@ class IncidentAssessmentController extends Controller
         $latitude = $request->input('latitude');
         $longitude = $request->input('longitude');
         $evidenceFile = $request->file('evidence_file');
+        $ranger_in_charge = $request->input('ranger_in_charge');
+        $mode_of_transport = $request->input('mode_of_transport');
+        $no_vehicle_used = $request->input('no_vehicle_used');
+        $fuel = $request->input('fuel');
+        $no_rangers = $request->input('no_rangers');
+        $batteries = $request->input('batteries');
+        $combo_rations = $request->input('combo_rations');
+        $fresh_rations = $request->input('fresh_rations');
+        $ammunition = $request->input('ammunition');
+        $rounds = $request->input('rounds');
+
         
         $evidencePath = null;
 
@@ -73,6 +84,16 @@ class IncidentAssessmentController extends Controller
             'time_of_incident' => $time_of_incident,
             'latitude' => $latitude,
             'longitude' => $longitude,
+            'ranger_in_charge' => $ranger_in_charge,
+            'mode_of_transport' => $mode_of_transport,
+            'no_vehicle_used' => $no_vehicle_used,
+            'fuel' => $fuel,
+            'no_rangers' => $no_rangers,
+            'batteries' => $batteries,
+            'combo_rations' => $combo_rations,
+            'fresh_rations' => $fresh_rations,
+            'ammunition' => $ammunition,
+            'rounds' => $rounds,
             ]
         );
         // dd($assessment);

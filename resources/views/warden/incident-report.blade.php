@@ -90,6 +90,146 @@
                                     <div class="relative w-full mb-3">
                                         <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                             htmlfor="grid-password">
+                                            Ranger in Charge
+                                        </label>
+                                        <input type="text"
+                                            disabled
+                                            name="time_of_incident"
+                                            class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                            value="{{ $incidentAssessment->ranger_in_charge }}"
+                                            >
+                                    </div>
+                                </div>
+                                <div class="w-full lg:w-6/12 px-4">
+                                    <div class="relative w-full mb-3">
+                                        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                            htmlfor="grid-password">
+                                            Mode of Transport
+                                        </label>
+                                        <input type="text"
+                                            disabled
+                                            name="time_of_incident"
+                                            class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                            value="{{ $incidentAssessment->mode_of_transport }}"
+                                            >
+                                    </div>
+                                </div>
+                                <div class="w-full lg:w-6/12 px-4">
+                                    <div class="relative w-full mb-3">
+                                        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                            htmlfor="grid-password">
+                                            Number of Vehicles Used
+                                        </label>
+                                        <input type="text"
+                                            disabled
+                                            name="time_of_incident"
+                                            class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                            value="{{ $incidentAssessment->no_vehicle_used }}"
+                                            >
+                                    </div>
+                                </div>
+                                <div class="w-full lg:w-6/12 px-4">
+                                    <div class="relative w-full mb-3">
+                                        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                            htmlfor="grid-password">
+                                           Fuel
+                                        </label>
+                                        <input type="text"
+                                            disabled
+                                            name="time_of_incident"
+                                            class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                            value="{{ $incidentAssessment->fuel }}"
+                                            >
+                                    </div>
+                                </div>
+                                <div class="w-full lg:w-6/12 px-4">
+                                    <div class="relative w-full mb-3">
+                                        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                            htmlfor="grid-password">
+                                           Number of Rangers
+                                        </label>
+                                        <input type="text"
+                                            disabled
+                                            name="time_of_incident"
+                                            class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                            value="{{ $incidentAssessment->no_rangers }}"
+                                            >
+                                    </div>
+                                </div>
+                                <div class="w-full lg:w-6/12 px-4">
+                                    <div class="relative w-full mb-3">
+                                        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                            htmlfor="grid-password">
+                                           Batteries
+                                        </label>
+                                        <input type="text"
+                                            disabled
+                                            name="time_of_incident"
+                                            class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                            value="{{ $incidentAssessment->batteries }}"
+                                            >
+                                    </div>
+                                </div>
+                                <div class="w-full lg:w-6/12 px-4">
+                                    <div class="relative w-full mb-3">
+                                        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                            htmlfor="grid-password">
+                                           Combo Rations
+                                        </label>
+                                        <input type="text"
+                                            disabled
+                                            name="time_of_incident"
+                                            class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                            value="{{ $incidentAssessment->combo_rations }}"
+                                            >
+                                    </div>
+                                </div>
+                                <div class="w-full lg:w-6/12 px-4">
+                                    <div class="relative w-full mb-3">
+                                        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                            htmlfor="grid-password">
+                                           Fresh Rations
+                                        </label>
+                                        <input type="text"
+                                            disabled
+                                            name="time_of_incident"
+                                            class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                            value="{{ $incidentAssessment->fresh_rations }}"
+                                            >
+                                    </div>
+                                </div>
+                                <div class="w-full lg:w-6/12 px-4">
+                                    <div class="relative w-full mb-3">
+                                        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                            htmlfor="grid-password">
+                                           Ammunition
+                                        </label>
+                                        <input type="text"
+                                            disabled
+                                            name="time_of_incident"
+                                            class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                            value="{{ $incidentAssessment->ammunition }}"
+                                            >
+                                    </div>
+                                </div>
+                                <div class="w-full lg:w-6/12 px-4">
+                                    <div class="relative w-full mb-3">
+                                        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                            htmlfor="grid-password">
+                                           Rounds of Ammunition Used
+                                        </label>
+                                        <input type="text"
+                                            disabled
+                                            name="time_of_incident"
+                                            class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                            value="{{ $incidentAssessment->rounds }}"
+                                            >
+                                    </div>
+                                </div>
+                                <div class="w-full lg:w-6/12 px-4">
+                                    <div class="relative w-full mb-3">
+                                        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                            htmlfor="grid-password">
                                            GPS Coordinates (Latitude)
                                         </label>
                                         <input type="text"
