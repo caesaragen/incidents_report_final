@@ -23,7 +23,7 @@ class IncidentAssessmentController extends Controller
      */
     public function create(Request $request) 
     {
-        // Validate the form data
+        // TODO: Validate the form data once changes are completed by client (use Requests)
         // $validatedData = $request->validate(
         //     [
         //     'incident_id' => 'required|exists:incidents,id',
